@@ -1,10 +1,16 @@
 import Vue from 'vue'
-import './plugins/axios'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import animated from 'animate.css'
+import Element from 'element-ui'
 
+Vue.use(Element)
+Vue.use(animated)
 Vue.config.productionTip = false
+
+
+
 
 new Vue({
   router,
