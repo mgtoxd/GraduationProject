@@ -1,0 +1,51 @@
+#top_bar{
+
+    background-color: #dfd8d2;
+}
+#top_bar > div{
+    height: 80px;
+}
+.search{
+    height: 30px;
+    width: 30px;
+    background-image: url("http://localhost:81/img/svg/search.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 0 0 ;
+    margin: 25px auto;
+
+}
+.search_p{
+    margin: 30px auto;
+    font-family: 'Eng';
+}
+.logo{
+    height: 80px;
+    width: 80px;
+    background-image: url("http://localhost:81/img/logo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 0 0 ;
+    margin:auto;
+}
+.MENU{
+
+}
+.MENU div{
+    height: 2px;
+    position: relative;
+    background-color: white;
+}
+.MENU div:nth-child(1){
+    top: 32px;
+    background-color: black;
+
+}
+.MENU div:nth-child(2){
+    top: 35px;
+    background-color: black;
+}
+.MENU div:nth-child(3){
+    top: 38px;
+    background-color: black;
+}

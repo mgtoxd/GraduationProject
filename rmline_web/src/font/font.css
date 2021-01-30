@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Eng';
+    src: url('./file/Eng.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Cn';
+    src: url('./file/CN.TTF');
+    font-weight: normal;
+    font-style: normal;
+}
