@@ -11,10 +11,12 @@ Vue.use(Element)
 Vue.use(animated)
 Vue.config.productionTip = false
 
-
+router.afterEach((to, from, next) => {
+    window.scrollTo(0, 0);
+});
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+    router,
+    store,
+    render: h => h(App)
 }).$mount('#app')

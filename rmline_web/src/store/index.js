@@ -13,7 +13,7 @@ export default new Vuex.Store({
       state.if_rm_menu = true
     },
     hide_rm_menu(state){
-      state.if_rm_menu = true
+      state.if_rm_menu = false
     },
     add(state){
       state.count++;

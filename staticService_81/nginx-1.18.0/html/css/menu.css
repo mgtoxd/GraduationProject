@@ -1,0 +1,34 @@
+#shutdown svg{
+    margin-top: 10px;
+}
+#menu_root{
+    opacity: 1;
+    color: white;
+
+}
+
+#menu_root > div{
+    height: 900px;
+}
+.line{
+    width: 100%;
+    height: 2px;
+    background-color: #dfd8d2;
+}
+.el-image{
+    margin-top: 50px;
+}
+.menu-enter-active {
+    animation: bounce-in 0.5s;
+}
+.menu-leave-active {
+    animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

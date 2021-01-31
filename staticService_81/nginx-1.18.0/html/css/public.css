@@ -1,0 +1,50 @@
+.rm_href p{
+    transition: all 0.2s 0s linear;
+}
+.rm_href:hover p{
+    color: #e27b5b;
+}
+
+.rm_href svg path{
+    transition: all 0.2s 0s linear;
+}
+.rm_href:hover svg path{
+    fill: #e27b5b;
+}
+
+.CN{
+    font-family: 'Cn';
+}
+.CN_bolder{
+    font-family: 'Cn';
+    font-weight: bolder;
+}
+.CN_lighter{
+    font-family: 'Cn';
+    font-weight: lighter;
+}
+.ft_20{
+    font-size: 20px;
+}
+.ft_30{
+    font-size: 30px;
+}
+.ft_40{
+    font-size: 40px;
+}
+.ft_50{
+    font-size: 50px;
+}
+.ft_25{
+    font-size: 25px;
+}
+.ft_35{
+    font-size: 35px;
+}
+.Eng{
+    font-family: 'Eng';
+}
+
+.point{
+    cursor: pointer;
+}

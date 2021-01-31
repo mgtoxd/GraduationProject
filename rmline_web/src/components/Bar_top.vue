@@ -20,7 +20,7 @@
                 </svg>
               </el-col>
               <el-col :span="16">
-                <p class="search_p">Search</p>
+                <p class="search_p CN_bolder">搜索</p>
               </el-col>
             </el-row>
           </el-col>
@@ -48,9 +48,10 @@
           <el-col :span="7">
             <div style="height: 1px"></div>
           </el-col>
-          <el-col :span="5" id="menu" @click.native="show_rm_menu">
+          <el-col :span="5" id="menu" @click.native="show_menu">
             <el-row>
-              <el-col :span="10"><p class="search_p">MENU</p></el-col>
+              <el-col :span="2" style="height: 1px"></el-col>
+              <el-col :span="8"><p class="search_p CN_bolder">菜单</p></el-col>
               <el-col :span="7">
                 <div class="MENU">
                   <div></div>
@@ -67,29 +68,38 @@
 
       </el-col>
     </el-row>
-    <rm_menu style="position: absolute;top: 0;left: 0" v-if="if_rm_menu"></rm_menu>
+    <transition
+        enter-active-class="menu-enter-active"
+        leave-active-class="menu-leave-active">
+      <rm_menu style="animation-duration: 500ms;position: absolute;top: 0;left: 0;width: 100%"
+               v-if="if_rm_menu"></rm_menu>
+
+    </transition>
+
   </div>
 </template>
 
 <script>
 import rm_menu from "./rm_menu";
 import {mapMutations, mapState} from "vuex";
+
 export default {
   name: "Bar_top",
   components: {rm_menu},
   methods: {
-    ...mapMutations(['show_rm_menu','hide_rm_menu']),
-    extend_menu(){
-      this.show_menu = true;
+    ...mapMutations(['show_rm_menu', 'hide_rm_menu']),
+    show_menu() {
+      // this.menu_class='animated rotateInDownLeft'
+      this.show_rm_menu()
       // console.log('ss')
     }
   },
   data() {
     return {
-      show_menu:false
+      // menu_class:''
     }
   },
-  computed:{
+  computed: {
     ...mapState(['if_rm_menu'])
   },
 
