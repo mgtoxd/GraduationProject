@@ -6,8 +6,15 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     count:1,
+    if_rm_menu:false,
   },
   mutations: {
+    show_rm_menu(state){
+      state.if_rm_menu = true
+    },
+    hide_rm_menu(state){
+      state.if_rm_menu = true
+    },
     add(state){
       state.count++;
     },

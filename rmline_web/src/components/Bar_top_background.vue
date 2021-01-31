@@ -6,18 +6,10 @@
           <el-col :span="13">
             <div style="height: 1px"></div>
           </el-col>
-          <el-col :span="6" id="search" style="cursor: pointer">
+          <el-col :span="6" style="cursor: pointer" :class="search_class" @mouseenter.native="search_over" @mouseleave.native="search_leave">
             <el-row>
-              <el-col class="search" :span="8">
-                <svg t="1612062724669" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                     xmlns="http://www.w3.org/2000/svg" p-id="1844" width="30" height="30">
-                  <path
-                      d="M785.493333 740.266667l-45.226666 45.226666 139.306666 139.36a32 32 0 0 0 45.28 0 32 32 0 0 0 0-45.28l-139.36-139.306666z"
-                      fill="#333333" p-id="1845"></path>
-                  <path
-                      d="M495.093333 153.76a341.333333 341.333333 0 1 1-241.333333 100 339.093333 339.093333 0 0 1 241.333333-100m0-64a405.333333 405.333333 0 1 0 286.613334 118.72 404.053333 404.053333 0 0 0-286.613334-118.72z"
-                      fill="#333333" p-id="1846"></path>
-                </svg>
+              <el-col :span="8">
+                <div class="search"></div>
               </el-col>
               <el-col :span="16">
                 <p class="search_p">Search</p>
@@ -48,7 +40,7 @@
           <el-col :span="7">
             <div style="height: 1px"></div>
           </el-col>
-          <el-col :span="5" id="menu" @click.native="show_rm_menu">
+          <el-col :span="5" style="cursor: pointer" :class="menu_class" @mouseenter.native="menu_over()" @mouseleave.native="menu_leave()">
             <el-row>
               <el-col :span="10"><p class="search_p">MENU</p></el-col>
               <el-col :span="7">
@@ -67,37 +59,15 @@
 
       </el-col>
     </el-row>
-    <rm_menu style="position: absolute;top: 0;left: 0" v-if="if_rm_menu"></rm_menu>
   </div>
 </template>
 
 <script>
-import rm_menu from "./rm_menu";
-import {mapMutations, mapState} from "vuex";
 export default {
-  name: "Bar_top",
-  components: {rm_menu},
-  methods: {
-    ...mapMutations(['show_rm_menu','hide_rm_menu']),
-    extend_menu(){
-      this.show_menu = true;
-      // console.log('ss')
-    }
-  },
-  data() {
-    return {
-      show_menu:false
-    }
-  },
-  computed:{
-    ...mapState(['if_rm_menu'])
-  },
-
-
+name: "Bar_top_background"
 }
 </script>
 
 <style scoped>
-@import "http://localhost:81/css/Bar_top.css";
 
 </style>

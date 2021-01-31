@@ -8,12 +8,18 @@
 .search{
     height: 30px;
     width: 30px;
-    background-image: url("http://localhost:81/img/svg/search.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: 0 0 ;
+    /*background-image: url("http://localhost:81/img/svg/search.svg");*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: contain;*/
+    /*background-position: 0 0 ;*/
     margin: 25px auto;
 
+}
+.search svg{
+    height: 30px;
+    width: 30px;
+    float: right;
+    margin-left: 5px;
 }
 .search_p{
     margin: 30px auto;
@@ -34,18 +40,52 @@
 .MENU div{
     height: 2px;
     position: relative;
-    background-color: white;
+    background-color: black;
 }
 .MENU div:nth-child(1){
     top: 32px;
-    background-color: black;
+    /*background-color: black;*/
 
 }
 .MENU div:nth-child(2){
     top: 35px;
-    background-color: black;
+    /*background-color: black;*/
 }
 .MENU div:nth-child(3){
     top: 38px;
-    background-color: black;
+    /*background-color: black;*/
+}
+/*menu动画效果*/
+#menu{
+    transition: all 0.2s 0s linear;
+    cursor: pointer
+}
+#menu .MENU div{
+    transition: all 0.2s 0s linear;
+}
+#menu:hover .MENU div:nth-child(1){
+    top: 30px;
+}
+#menu:hover .MENU div:nth-child(3){
+    top: 40px;
+}
+#menu:hover .MENU div{
+    background-color: orange;
+}
+#menu:hover{
+    color: orange;
+}
+
+#search svg path{
+    transition: all 0.2s 0s;
+    /*fill: orange;*/
+}
+#search p{
+    transition: all 0.2s 0s;
+}
+#search:hover svg path{
+    fill: orange;
+}
+#search:hover p{
+    color: orange;
 }

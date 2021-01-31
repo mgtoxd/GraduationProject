@@ -46,7 +46,7 @@ export default {
 
 <style>
 @import "font/font.css";
-@import "http://localhost:81/css/Bar_top.css";
+
 
 body {
   margin: 0;
