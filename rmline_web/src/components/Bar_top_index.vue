@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-row id="top_bar" :gutter="30">
+    <el-row id="top_bar" style="background-color: transparent" :gutter="30">
       <el-col :span="8">
         <el-row>
           <el-col :span="13">

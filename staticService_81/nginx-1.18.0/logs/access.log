@@ -569,3 +569,5 @@
 127.0.0.1 - - [31/Jan/2021:20:31:10 +0800] "GET /css/public.css HTTP/1.1" 304 0 "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36 Edg/88.0.705.56"
 127.0.0.1 - - [31/Jan/2021:20:31:12 +0800] "GET /img/logo.png HTTP/1.1" 304 0 "http://localhost:81/css/Bar_top.css" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36 Edg/88.0.705.56"
 127.0.0.1 - - [31/Jan/2021:20:31:14 +0800] "GET /DFS/testhead.jpg HTTP/1.1" 304 0 "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36 Edg/88.0.705.56"
+127.0.0.1 - - [01/Feb/2021:09:52:49 +0800] "GET / HTTP/1.1" 403 555 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36 Edg/88.0.705.56"
+127.0.0.1 - - [01/Feb/2021:09:52:49 +0800] "GET /favicon.ico HTTP/1.1" 404 555 "http://localhost:81/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36 Edg/88.0.705.56"

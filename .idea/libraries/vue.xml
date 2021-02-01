@@ -1,0 +1,26 @@
+<component name="libraryTable">
+  <library name="vue" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/rmline_web/node_modules/vue" />
+        <item url="file://$PROJECT_DIR$/rmline_web/node_modules/vue-hot-reload-api" />
+        <item url="file://$PROJECT_DIR$/rmline_web/node_modules/vue-loader" />
+        <item url="file://$PROJECT_DIR$/rmline_web/node_modules/vue-style-loader" />
+        <item url="file://$PROJECT_DIR$/rmline_web/node_modules/vue-template-compiler" />
+        <item url="file://$PROJECT_DIR$/rmline_web/node_modules/vue-template-es2015-compiler" />
+        <item url="file://$PROJECT_DIR$/rmline_web/node_modules/vuex" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/rmline_web/node_modules/vue" />
+      <root url="file://$PROJECT_DIR$/rmline_web/node_modules/vue-hot-reload-api" />
+      <root url="file://$PROJECT_DIR$/rmline_web/node_modules/vue-loader" />
+      <root url="file://$PROJECT_DIR$/rmline_web/node_modules/vue-style-loader" />
+      <root url="file://$PROJECT_DIR$/rmline_web/node_modules/vue-template-compiler" />
+      <root url="file://$PROJECT_DIR$/rmline_web/node_modules/vue-template-es2015-compiler" />
+      <root url="file://$PROJECT_DIR$/rmline_web/node_modules/vuex" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
