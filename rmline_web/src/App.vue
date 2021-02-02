@@ -1,7 +1,7 @@
 <template>
   <div>
     <Bar_top v-if="showTopBar" :class="TopBarClass"
-             style="animation-duration: 0.3s;position: fixed;top: 0;left: 0;width: 100%"></Bar_top>
+             style="animation-duration: 0.3s;position: fixed;top: 0;left: 0;width: 100%;z-index: 999"></Bar_top>
     <div style="height: 3000px">
       <router-view></router-view>
     </div>
@@ -13,10 +13,12 @@ import Bar_top from "@/components/Bar_top";
 import {mapMutations} from "vuex";
 
 export default {
-  mounted() {
+  created() {
 
+  },
+  mounted() {
     window.addEventListener("scroll", this.getScroll)
-    this.router.replace('')
+    this.$router.push({name:'index'})
   },
   destroyed() {
     window.removeEventListener("scroll", this.getScroll)
@@ -27,6 +29,7 @@ export default {
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
       this.TopBarClass = ''
       if (scrollTop > 80) {
+        console.log('dawda')
         this.TopBarClass = 'animated fadeInDown'
         this.showTopBar = true;
       } else if (scrollTop <80) {

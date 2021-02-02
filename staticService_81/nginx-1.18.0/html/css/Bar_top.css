@@ -1,5 +1,6 @@
 #top_bar{
     background-color: #dfd8d2;
+    z-index: 999;
 }
 #top_bar > div{
     height: 80px;
