@@ -37,7 +37,7 @@
     height: 0.3px;
     background-color: gray;
 }
-.el-image{
+menu_root_class .el-image{
     margin-top: 50px;
 }
 .store-seconed-enter{

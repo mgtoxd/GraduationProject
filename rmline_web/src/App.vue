@@ -14,10 +14,10 @@ import {mapMutations} from "vuex";
 
 export default {
   created() {
-
+    window.addEventListener("scroll", this.getScroll)
   },
   mounted() {
-    window.addEventListener("scroll", this.getScroll)
+
     this.$router.push({name:'index'})
   },
   destroyed() {
@@ -29,7 +29,7 @@ export default {
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
       this.TopBarClass = ''
       if (scrollTop > 80) {
-        console.log('dawda')
+        // console.log('dawda')
         this.TopBarClass = 'animated fadeInDown'
         this.showTopBar = true;
       } else if (scrollTop <80) {

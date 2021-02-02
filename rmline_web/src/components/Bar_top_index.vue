@@ -71,7 +71,7 @@
     <transition
         enter-active-class="menu-enter-active"
         leave-active-class="menu-leave-active">
-      <rm_menu style="animation-duration: 500ms;position: absolute;top: 0;left: 0;width: 100%"
+      <rm_menu style="animation-duration: 500ms;position: fixed;top: 0;left: 0;width: 100%;z-index: 999"
                v-if="if_rm_menu" @touchmove.prevent @mousewheel.prevent></rm_menu>
 
     </transition>

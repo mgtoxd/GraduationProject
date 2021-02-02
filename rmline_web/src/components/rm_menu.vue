@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div  @touchmove.prevent @mousewheel.prevent>
     <el-row :class="menu_root_class" :gutter="50" id="menu_root"
-            style=" background-color: #31302f;">
+            style=" background-color: #31302f;z-index = 999">
       <el-col :span="5">
       </el-col>
       <!--      个人信息-->
