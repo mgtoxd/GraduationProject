@@ -5,3 +5,16 @@
     width: 100%;
     z-index: 999
 }
+
+#index .progress_bar{
+    position: fixed;
+    bottom: 0px;
+    background-color:transparent;
+    width: 100%;
+}
+
+#index .progress_bar .el-col{
+    height: 90px;
+    background-color: transparent;
+    border: black 2px solid;
+}
