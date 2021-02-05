@@ -1,20 +1,9 @@
-#bar_top{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 999
+#index{
+    background-color: white;
 }
-
-#index .progress_bar{
-    position: fixed;
-    bottom: 0px;
-    background-color:transparent;
-    width: 100%;
+#index .el-col{
+    border:  2px black solid;
 }
-
-#index .progress_bar .el-col{
-    height: 90px;
-    background-color: transparent;
-    border: black 2px solid;
+#index video{
+    height: 100%;
 }

@@ -1,0 +1,30 @@
+#top_bar{
+    background-color: #4f4f4f;
+    color: white;
+}
+#top_bar .el-col{
+    height: 100px;
+    /* border: 1px black solid; */
+}
+#top_bar .search .el-row{
+    margin-top: 50px;
+    transform: translateY(-50%);
+    
+    height: 40px;
+}
+#top_bar .search .el-row .el-col{
+    height: 100%;
+}
+#top_bar .search .el-image{
+    height: 40px;
+    width: 40px;
+    float: right;
+}
+#top_bar .search p{
+    line-height: 1;
+    margin-top: 10px;
+
+}
+#top_bar .logo .el-image{
+    margin-top: 12px;
+}
