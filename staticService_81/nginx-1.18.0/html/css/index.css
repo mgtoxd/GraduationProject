@@ -68,21 +68,87 @@
 #index .hover_class .el-col{
     margin-top: 30px;
 }
-#index .add_under_carousel > .el-row{
-    margin-left: -15px;
-    margin-right: -15px;
-    height: 300px;
-}
+
 #index .add_under_carousel{
     margin-top: 30px;
 }
+#index .add_under_carousel > .el-row{
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
 #index .add_under_carousel .table_item{
-    height: 130px;
-    border: 3px black solid;
+    height: 90px;
+    border: 0.1px black solid;
     background-color: darkgray;
 }
 #index .add_under_carousel .table_item .el-image{
-    margin-top: 30px;
+    margin-top: 15px;
     width: 100%;
-    height: 45px;
+    height: 40px;
+}
+#index .add_under_carousel .table_item .title{
+    line-height: 10px;
+}
+#index .add_under_carousel .table_item .title p{
+    margin-top: 5px;
+    font-size: 5px;
+    color: #8f8f8f;
+    text-align: center;
+}
+#index .add_under_carousel > .el-row >.el-col>.el-image{
+    height: 180px;
+}
+
+
+#index .special_column{
+    background-color: #f5f5f5;
+}
+#index .special_column .el-divider{
+    margin: 0px;
+}
+#index .special_column .timer{
+    background-color: #f1eded;
+
+}
+#index .special_column .timer .title{
+    text-align: center;
+    font-size: 30px;
+    color: red;
+}
+#index .special_column .timer .num{
+    line-height: 50px;
+    background-color: #605751;
+    text-align: center;
+    font-size: 35px;
+    color: white;
+}
+#index .special_column .timer .colon{
+    font-size: 35px;
+}
+#index .sec_product .el-image{
+    height: 100px;
+}
+#index .sec_describe{
+    line-height: 20px;
+    text-align: center;
+    font-size: 10px;
+}
+#index .sec_title{
+    line-height: 20px;
+    text-align: center;
+    
+}
+#index .sec_price{
+    line-height: 40px;
+    text-align: right;
+    
+}
+#index .sec_oldprice{
+    line-height: 40px;
+    text-align: left;
+    text-decoration: line-through;
+}
+#index .sec_product p{
+    margin:  0px;
 }

@@ -1,8 +1,7 @@
-<template>
+<template xmlns:el-col="http://www.w3.org/1999/html">
   <el-row id="index">
-
     <el-col :span="3" style="height: 1px"></el-col>
-    <el-col :span="18">
+    <el-col :span="18" style="padding-left:15px;padding-right: 15px">
       <el-row :gutter="30" style="margin-top: 50px">
         <el-col class="classfications" :span="4">
           <el-row>
@@ -24,7 +23,6 @@
                 </el-row>
               </div>
             </el-col>
-
           </el-row>
         </el-col>
         <el-col class="carouselmap" style="position: relative" :span="20">
@@ -34,13 +32,12 @@
                   :src="item.img_src"
                   :fit="'cover'"
                   style="height: 100%">
-
               </el-image>
             </el-carousel-item>
           </el-carousel>
         </el-col>
         <el-col class="add_under_carousel" :span="24">
-          <el-row :gutter="20">
+          <el-row>
             <el-col :span="4">
               <el-row>
                 <el-col class="table_item" :key="index" v-for="(item,index) in add_under_carousel_table" :span="8">
@@ -48,39 +45,112 @@
                     <el-col :span="6" style="height: 1px"></el-col>
                     <el-col :span="12">
                       <el-image
-                      :src="item.img_src">
+                          :src="item.img_src">
                       </el-image>
                     </el-col>
                     <el-col :span="6" style="height: 1px"></el-col>
-                    <el-col :span="24">
-                      {{item.title}}
+                    <el-col class="title" :span="24">
+                      <p v-text="item.title"></p>
                     </el-col>
                   </el-row>
                 </el-col>
               </el-row>
             </el-col>
-            <el-col :span="20">
+            <el-col :span="1" style="height: 1px"/>
+            <el-col :span="5">
+              <el-image :src="add_under_carousel_add[0].img_src"
+              />
+            </el-col>
+            <el-col :span="2" style="height: 1px"/>
+            <el-col :span="5">
+              <el-image :src="add_under_carousel_add[1].img_src"
+              />
+            </el-col>
+            <el-col :span="2" style="height: 1px"/>
+            <el-col :span="5">
+              <el-image :src="add_under_carousel_add[2].img_src"
+              />
+            </el-col>
+          </el-row>
+        </el-col>
+        <el-col :span="24" style="height: 50px"/>
+      </el-row>
+    </el-col>
+    <el-col :span="3" style="height: 1px"></el-col>
+    <el-col :span="24" style="height: 100px"/>
+    <!--    专栏-->
+    <el-col class="special_column" :span="24">
+      <el-row>
+        <el-col :span="3" style="height: 1px"/>
+        <el-col :span="18">
+          <el-row>
+            <el-col :span="24" class="seckill">
               <el-row>
-                <el-col :span="8">
-                  周边游
+                <el-col :span="2">
+                  <p v-text="seckill.title"></p>
                 </el-col>
-                <el-col :span="8">
-                  周边游
+                <el-col :span="22" style="height: 1px"/>
+                <el-col :span="24">
+                  <el-divider></el-divider>
                 </el-col>
-                <el-col :span="8">
-                  周边游
+                <el-col :span="24" style="height: 50px"/>
+                <el-col :span="24">
+                  <el-row>
+                    <!--                    秒杀计时器-->
+                    <el-col :span="4">
+                      <el-row class="timer">
+                        <el-col :span="24" style="height: 30px"/>
+                        <el-col :span="4" style="height: 1px"></el-col>
+                        <el-col :span="16"><p class="title" v-text="seckill.time+'场'"></p></el-col>
+                        <el-col :span="4" style="height: 1px"></el-col>
+                        <el-col :span="24">
+                          <el-row>
+                            <el-col :span="3" style="height: 1px"/>
+                            <el-col :span="18">
+                              <el-image style="height: 60px" :src="seckill.img_src" :fit="'contain'"/>
+                            </el-col>
+                            <el-col :span="3"/>
+                          </el-row>
+                        </el-col>
+                        <el-col :span="24" style="height: 15px"/>
+                        <el-col :span="2" style="height: 1px"/>
+                        <el-col :span="6" class="num"><span>00</span></el-col>
+                        <el-col :span="1" class="colon"><span>:</span></el-col>
+                        <el-col :span="6" class="num"><span>00</span></el-col>
+                        <el-col :span="1" class="colon"><span>:</span></el-col>
+                        <el-col :span="6" class="num"><span>00</span></el-col>
+                        <el-col :span="2" style="height: 1px"/>
+                        <el-col :span="24" style="height: 50px"/>
+                      </el-row>
+                    </el-col>
+                    <!--                    秒杀商品-->
+                    <el-col :span="4" v-for="(item,index) in seckill.item">
+                      <el-row class="sec_product">
+                        <el-col :span="24" style="height: 60px"/>
+                        <el-col :span="4" style="height: 1px"/>
+                        <el-col :span="16">
+                          <el-image :src="item.img_src" :fit="'contain'"/>
+                        </el-col>
+                        <el-col :span="4" style="height: 1px"/>
+                        <el-col :span="24" style="height: 40px"/>
+                        <el-col :span="24" class="sec_title"><p v-text="item.title"></p></el-col>
+                        <el-col :span="24" class="sec_describe"><p v-text="item.describe"></p></el-col>
+                        <el-col :span="12" class="sec_price"><p v-text="item.price"></p></el-col>
+                        <el-col :span="12" class="sec_oldprice"><p v-text="item.old_price"></p></el-col>
+                      </el-row>
+                    </el-col>
+                  </el-row>
                 </el-col>
+
+
               </el-row>
             </el-col>
           </el-row>
         </el-col>
+        <el-col :span="3" style="height: 1px"/>
 
-        <el-col class="trip_link" :span="12">
-          长途游
-        </el-col>
       </el-row>
     </el-col>
-    <el-col :span="3" style="height: 1px"></el-col>
   </el-row>
 </template>
 
@@ -284,30 +354,58 @@ export default {
       ],
       add_under_carousel_table: [
         {
-          title: '1',
-          img_src:'http://localhost:81/img/png/seckill.png',
+          title: '限时秒杀',
+          img_src: 'http://localhost:81/img/png/seckill.png',
         },
         {
           title: '1',
-          img_src:'',
+          img_src: '',
         },
         {
           title: '1',
-          img_src:'',
+          img_src: '',
         },
         {
           title: '1',
-          img_src:'',
+          img_src: '',
         },
         {
           title: '1',
-          img_src:'',
+          img_src: '',
         },
         {
           title: '1',
-          img_src:'',
+          img_src: '',
         },
-      ]
+      ],
+      add_under_carousel_add: [
+        {
+          img_src: 'http://localhost:81/img/jpg/william-christen-hB_nkwIw5f4-unsplash.jpg',
+          link: ''
+        },
+        {
+          img_src: 'http://localhost:81/img/jpg/william-christen-hB_nkwIw5f4-unsplash.jpg',
+          link: ''
+        },
+        {
+          img_src: 'http://localhost:81/img/jpg/william-christen-hB_nkwIw5f4-unsplash.jpg',
+          link: ''
+        },
+      ],
+      seckill: {
+        title: '限时秒杀',
+        time: '10:00',
+        img_src: 'http://localhost:81/img/png/seckill.png',
+        item: [
+          {
+            img_src: ' http://localhost:81/img/png/seckill.png',
+            title: 'title',
+            describe: '描述',
+            price: '156',
+            old_price: '158'
+          }
+        ]
+      }
     }
   },
   methods: {
