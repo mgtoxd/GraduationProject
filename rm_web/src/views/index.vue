@@ -8,13 +8,21 @@
             <el-col @mouseenter.native="show_classfication_item(index)"
                     @mouseleave.native="hide_classfication_item(index)" v-for="(item,index) in classfications"
                     :key="index" :span="24">
-              <span>{{ item.title }}</span>
-              <svg t="1613562809492" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                   xmlns="http://www.w3.org/2000/svg" p-id="1373" width="15" height="15">
-                <path
-                    d="M711.095467 468.096c-84.821333-142.250667-169.728-284.416-254.634667-426.666667A84.821333 84.821333 0 0 0 339.895467 12.16a85.546667 85.546667 0 0 0-29.098667 117.077333c76.117333 127.573333 152.32 255.146667 228.522667 382.72L310.7968 894.762667a85.589333 85.589333 0 0 0 29.098667 117.077333c40.192 24.234667 92.330667 11.093333 116.565333-29.269333 84.906667-142.250667 169.813333-284.416 254.634667-426.666667 18.986667-31.744 18.986667-56.064 0-87.808z"
-                    p-id="1374" fill="#ffffff"></path>
-              </svg>
+              <el-row class="text-center">
+                <el-col :span="12"><span>{{ item.title }}</span></el-col>
+                <el-col :span="12">
+                  <div class="mt-4">
+                    <svg t="1613562809492" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                         xmlns="http://www.w3.org/2000/svg" p-id="1373" width="15" height="15">
+                      <path
+                          d="M711.095467 468.096c-84.821333-142.250667-169.728-284.416-254.634667-426.666667A84.821333 84.821333 0 0 0 339.895467 12.16a85.546667 85.546667 0 0 0-29.098667 117.077333c76.117333 127.573333 152.32 255.146667 228.522667 382.72L310.7968 894.762667a85.589333 85.589333 0 0 0 29.098667 117.077333c40.192 24.234667 92.330667 11.093333 116.565333-29.269333 84.906667-142.250667 169.813333-284.416 254.634667-426.666667 18.986667-31.744 18.986667-56.064 0-87.808z"
+                          p-id="1374" fill="#ffffff"></path>
+                    </svg>
+                  </div>
+                </el-col>
+              </el-row>
+
+
               <div v-if="item.show" class="hover_class" style="">
                 <el-row>
                   <el-col v-for="(item_product,index) in item.items" :key="index" :span="8">
@@ -83,6 +91,7 @@
       <el-row>
         <el-col :span="3" style="height: 1px"/>
         <el-col :span="18">
+          <!--          秒杀-->
           <el-row>
             <el-col :span="24" class="seckill">
               <el-row>
@@ -95,7 +104,7 @@
                 </el-col>
                 <el-col :span="24" style="height: 50px"/>
                 <el-col :span="24">
-                  <el-row>
+                  <el-row :gutter="30">
                     <!--                    秒杀计时器-->
                     <el-col :span="4">
                       <el-row class="timer">
@@ -124,19 +133,21 @@
                       </el-row>
                     </el-col>
                     <!--                    秒杀商品-->
-                    <el-col :span="4" v-for="(item,index) in seckill.item">
+                    <el-col class="bg-indexPro transform hover:scale-105 hover:shadow" :span="4"
+                            v-for="(item,index) in seckill.item" :key="index">
                       <el-row class="sec_product">
-                        <el-col :span="24" style="height: 60px"/>
+                        <el-col :span="24" style="height: 30px"/>
                         <el-col :span="4" style="height: 1px"/>
                         <el-col :span="16">
                           <el-image :src="item.img_src" :fit="'contain'"/>
                         </el-col>
                         <el-col :span="4" style="height: 1px"/>
-                        <el-col :span="24" style="height: 40px"/>
+                        <el-col :span="24" style="height: 25px"/>
                         <el-col :span="24" class="sec_title"><p v-text="item.title"></p></el-col>
                         <el-col :span="24" class="sec_describe"><p v-text="item.describe"></p></el-col>
                         <el-col :span="12" class="sec_price"><p v-text="item.price"></p></el-col>
                         <el-col :span="12" class="sec_oldprice"><p v-text="item.old_price"></p></el-col>
+                        <el-col :span="24" style="height: 10px"/>
                       </el-row>
                     </el-col>
                   </el-row>
@@ -146,11 +157,21 @@
               </el-row>
             </el-col>
           </el-row>
+          <!--    广告条幅-->
+          <el-row>
+            <el-col class="mt-12" :span="24">
+              <el-image :src="banner_under_special.img_src"/>
+            </el-col>
+          </el-row>
+
+
+
         </el-col>
         <el-col :span="3" style="height: 1px"/>
 
       </el-row>
     </el-col>
+
   </el-row>
 </template>
 
@@ -405,6 +426,10 @@ export default {
             old_price: '158'
           }
         ]
+      },
+      banner_under_special: {
+        img_src: '',
+        link: ""
       }
     }
   },

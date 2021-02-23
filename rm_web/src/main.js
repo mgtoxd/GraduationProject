@@ -7,6 +7,7 @@ import ElementUI from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/zh-CN'
 import 'element-ui/lib/theme-chalk/index.css'
 import VideoPlayer from 'vue-video-player'
+import 'tailwindcss/tailwind.css'
 require('video.js/dist/video-js.css')
 require('vue-video-player/src/custom-theme.css')
 

@@ -81,7 +81,7 @@
 </template>
 
 <script>
-import {mapMutations} from "_vuex@3.6.2@vuex";
+import {mapMutations} from "vuex";
 import {mapState} from "vuex";
 import Avatar from 'vue-avatar'
 
