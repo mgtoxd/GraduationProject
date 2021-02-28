@@ -104,22 +104,14 @@
                 <el-col :span="24">
                   <el-row :gutter="30">
                     <!--                    秒杀计时器-->
-                    <el-col :span="4">
+                    <el-col :span="4" >
                       <el-row class="timer">
                         <el-col :span="24" style="height: 30px"/>
-                        <el-col :span="4" style="height: 1px"></el-col>
-                        <el-col :span="16"><p class="title" v-text="seckill.time+'场'"></p></el-col>
-                        <el-col :span="4" style="height: 1px"></el-col>
-                        <el-col :span="24">
-                          <el-row>
-                            <el-col :span="3" style="height: 1px"/>
-                            <el-col :span="18">
-                              <el-image style="height: 60px" :src="seckill.img_src" :fit="'contain'"/>
-                            </el-col>
-                            <el-col :span="3"/>
-                          </el-row>
+                        <el-col :span="24" class="flex justify-center"><p class="title" v-text="seckill.time+'场'"></p></el-col>
+                        <el-col :span="24" class="flex justify-center">
+                          <el-image style="height: 80px" :src="seckill.img_src" :fit="'contain'"/>
                         </el-col>
-                        <el-col :span="24" style="height: 15px"/>
+                        <el-col :span="24" style="height: 40px"/>
                         <el-col :span="2" style="height: 1px"/>
                         <el-col :span="6" class="num"><span>00</span></el-col>
                         <el-col :span="1" class="colon"><span>:</span></el-col>
@@ -131,34 +123,30 @@
                       </el-row>
                     </el-col>
                     <!--                    秒杀商品-->
-                    <el-col class="bg-indexPro transform hover:scale-105 hover:shadow" :span="4"
+                    <el-col class="bg-indexPro transform " :span="4"
                             v-for="(item,index) in seckill.item" :key="index">
-                      <el-row class="sec_product">
+                      <el-row class="sec_product hover:scale-105 hover:shadow" >
                         <el-col :span="24" style="height: 30px"/>
-                        <el-col :span="4" style="height: 1px"/>
-                        <el-col :span="16">
+                        <el-col :span="24" class="flex justify-center">
                           <el-image :src="item.img_src" :fit="'contain'"/>
                         </el-col>
-                        <el-col :span="4" style="height: 1px"/>
                         <el-col :span="24" style="height: 25px"/>
                         <el-col :span="24" class="sec_title"><p v-text="item.title"></p></el-col>
                         <el-col :span="24" class="sec_describe"><p v-text="item.describe"></p></el-col>
                         <el-col :span="12" class="sec_price"><p v-text="item.price"></p></el-col>
                         <el-col :span="12" class="sec_oldprice"><p v-text="item.old_price"></p></el-col>
-                        <el-col :span="24" style="height: 10px"/>
+                        <el-col :span="24" style="height: 60px"/>
                       </el-row>
                     </el-col>
                   </el-row>
                 </el-col>
-
-
               </el-row>
             </el-col>
           </el-row>
           <!--    广告条幅-->
           <el-row>
             <el-col class="mt-12" :span="24">
-              <el-image :src="banner_under_special.img_src" class="h-32"/>
+              <el-image  :src="banner_under_special.img_src" class="h-32 w-full" :fit="'cover'"/>
             </el-col>
           </el-row>
           <!--          栏目-->
@@ -172,19 +160,21 @@
                 <el-image :src="item.cover.img_src" class="h-full w-full pb-1.5 pt-1.5"/>
               </el-col>
               <el-col :span="19" style="height: 620px">
-                <el-col :key="index" v-for="(item_pro,index) in item.items" :span="6">
-                  <el-image :src="item_pro.src" style="height: 300px" class="w-full pb-1.5 pt-1.5"></el-image>
-                </el-col>
-                <el-col :span="6" >
-                  <div style="background-color: #fff;height: 300px"  class="w-full h-full    pb-1.5 pt-1.5">
-                    <el-row class="flex justify-center mt-14 font-bold text-3xl" style="color: #c53030">
-                      <p>查看更多</p>
-                    </el-row>
-                    <el-row class="flex justify-center">
-                      <el-image :src="channel.more_img" class="w-20 h-20 mt-20" ></el-image>
-                    </el-row>
-                  </div>
-                </el-col>
+                <el-row :gutter="40">
+                  <el-col :key="index" v-for="(item_pro,index) in item.items" :span="6">
+                    <el-image :src="item_pro.src" style="height: 300px" class="w-full pb-1.5 pt-1.5"></el-image>
+                  </el-col>
+                  <el-col :span="6" >
+                    <div style="background-color: #fff;height: 300px"  class="w-full h-full    pb-1.5 pt-1.5">
+                      <el-row class="flex justify-center mt-14 font-bold text-3xl" style="color: #c53030">
+                        <p>查看更多</p>
+                      </el-row>
+                      <el-row class="flex justify-center">
+                        <el-image :src="channel.more_img" class="w-20 h-20 mt-20" ></el-image>
+                      </el-row>
+                    </div>
+                  </el-col>
+                </el-row>
               </el-col>
             </el-row>
           </div>
@@ -204,11 +194,11 @@ export default {
     return {
       carouselmap: [
         {
-          img_src: this.$getStatic('img/png/1.png'),
+          img_src: this.$http.getStatic('img/png/1.png'),
           link: ''
         },
         {
-          img_src: this.$getStatic('img/png/2.png'),
+          img_src: this.$http.getStatic('img/png/2.png'),
           link: ''
         },
       ],
@@ -399,7 +389,7 @@ export default {
       add_under_carousel_table: [
         {
           title: '限时秒杀',
-          img_src: this.$getStatic('img/png/seckill.png'),
+          img_src: this.$http.getStatic('img/png/seckill.png'),
         },
         {
           title: '1',
@@ -439,7 +429,7 @@ export default {
       seckill: {
         title: '限时秒杀',
         time: '10:00',
-        img_src: this.$getStatic('img/png/seckill.png'),
+        img_src: this.$http.getStatic('img/png/seckill.png'),
         item: [
           {
             img_src: ' http://localhost:81/img/png/seckill.png',
@@ -447,15 +437,22 @@ export default {
             describe: '描述',
             price: '156',
             old_price: '158'
-          }
+          },
+          {
+            img_src: ' http://localhost:81/img/png/seckill.png',
+            title: 'title',
+            describe: '描述',
+            price: '156',
+            old_price: '158'
+          },
         ]
       },
       banner_under_special: {
-        img_src: this.$getStatic('img/jpg/river-5978743.jpg'),
+        img_src: this.$http.getStatic('img/jpg/river-5978743.jpg'),
         link: ""
       },
       channel: {
-        more_img:this.$getStatic('img/png/more.png'),
+        more_img:this.$http.getStatic('img/png/more.png'),
         items:[
           {
             title:'跟团游',

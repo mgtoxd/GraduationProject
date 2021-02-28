@@ -28,27 +28,27 @@ export default {
         items:[
           {
             title:'安全',
-            img_src:this.$getStatic('img/png/safe.png'),
+            img_src:this.$http.getStatic('img/png/safe.png'),
             link:''
           },
           {
             title:'安全',
-            img_src:this.$getStatic('img/png/safe.png'),
+            img_src:this.$http.getStatic('img/png/safe.png'),
             link:''
           },
           {
             title:'安全',
-            img_src:this.$getStatic('img/png/safe.png'),
+            img_src:this.$http.getStatic('img/png/safe.png'),
             link:''
           },
           {
             title:'安全',
-            img_src:this.$getStatic('img/png/safe.png'),
+            img_src:this.$http.getStatic('img/png/safe.png'),
             link:''
           },
           {
             title:'安全',
-            img_src:this.$getStatic('img/png/safe.png'),
+            img_src:this.$http.getStatic('img/png/safe.png'),
             link:''
           },
         ]
