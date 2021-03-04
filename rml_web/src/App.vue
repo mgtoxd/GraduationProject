@@ -1,9 +1,12 @@
 <template>
-  <div id="app">
+  <div id="app" class="app" style="height: 100vh;overflow-x: hidden;">
+    <el-backtop target=".app"></el-backtop>
+
     <Topbar style="position: fixed; top: 0; left: 0;width: 100%;z-index: 998"></Topbar>
     <router-view>
     </router-view>
     <footbar style="margin-top: 50px"></footbar>
+
   </div>
 </template>
 
@@ -17,7 +20,7 @@ body {
 <script>
 import Topbar from "./components/topbar";
 import Footbar from "./components/footbar";
-import { getCurrentInstance } from "vue";
+import {getCurrentInstance} from "vue";
 
 export default {
   components: {Footbar, Topbar},
@@ -31,7 +34,7 @@ export default {
   },
   mounted() {
     console.log()
-    if (this.$route.path==='/'){
+    if (this.$route.path === '/') {
       this.$router.push('/index')
     }
   },

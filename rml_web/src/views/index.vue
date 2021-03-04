@@ -1,12 +1,14 @@
 <template xmlns:el-col="http://www.w3.org/1999/html">
+
   <el-row id="index">
+
     <el-col :span="3" style="height: 1px"></el-col>
 <!--    轮播图-->
     <el-col :span="18" style="padding-left:15px;padding-right: 15px">
       <el-row :gutter="30" style="margin-top: 50px">
         <el-col class="classfications" :span="4">
           <el-row>
-            <el-col @click.native="$linkTo(item.link,{'title':item.title})" @mouseenter.native="show_classfication_item(index)"
+            <el-col class="cursor-pointer" @click.native="$http.linkTo(item.link,{'title':item.title})" @mouseenter.native="show_classfication_item(index)"
                     @mouseleave.native="hide_classfication_item(index)" v-for="(item,index) in classfications"
                     :key="index" :span="24">
               <el-row class="text-center">
@@ -152,7 +154,7 @@
           <!--          栏目-->
           <div class="mt-10" :key="index" v-for="(item,index) in channel.items">
             <el-row>
-              <el-col class="leading-10 mt-2.5 mb-2.5 text-2xl"><p>{{item.title}}</p></el-col>
+              <el-col class=" leading-10 mt-2.5 mb-2.5 text-2xl"><p>{{item.title}}</p></el-col>
             </el-row>
             <el-row :gutter="20">
 <!--              封皮-->
@@ -161,8 +163,8 @@
               </el-col>
               <el-col :span="19" style="height: 620px">
                 <el-row :gutter="40">
-                  <el-col :key="index" v-for="(item_pro,index) in item.items" :span="6">
-                    <el-image :src="item_pro.src" style="height: 300px" class="w-full pb-1.5 pt-1.5"></el-image>
+                  <el-col  :key="index" v-for="(item_pro,index) in item.items" :span="6">
+                    <el-image  :src="item_pro.src" style="height: 300px" class="w-full pb-1.5 pt-1.5 hover:scale-105 hover:shadow"></el-image>
                   </el-col>
                   <el-col :span="6" >
                     <div style="background-color: #fff;height: 300px"  class="w-full h-full    pb-1.5 pt-1.5">

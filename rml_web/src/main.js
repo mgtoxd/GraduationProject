@@ -12,3 +12,4 @@ installElementPlus(app)
 app.config.globalProperties.$http = getStatic
 app.config.devtools = true
 app.use(store).use(router).mount('#app')
+app.config.devtools = true

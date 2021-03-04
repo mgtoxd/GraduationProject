@@ -1,10 +1,13 @@
 <template>
   <div id="classfication">
-    <el-col :span="2" style="height: 1px"></el-col>
-    <el-col :span="20">
-      <h1>{{title}}</h1>
-    </el-col>
-    <el-col :span="2" style="height: 1px"></el-col>
+    <el-row>
+      <el-col :span="3" style="height: 1px"></el-col>
+      <el-col class="bg-blue-100 h-48" :span="18">
+
+      </el-col>
+      <el-col :span="3" style="height: 1px"></el-col>
+    </el-row>
+
   </div>
 </template>
 

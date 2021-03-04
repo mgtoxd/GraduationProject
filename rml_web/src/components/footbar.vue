@@ -5,7 +5,7 @@
     <el-col :span="18">
 <!--      分栏-->
       <el-row class="">
-        <el-col class="flex justify-center"  :key="index" v-for="(item,index) in service.items" :span="'5-8'" style="width: 20%"  >
+        <el-col class="flex justify-center"  :key="index" v-for="(item,index) in service.items" :span="5-8" style="width: 20%"  >
           <div>
             <el-image :src="item.img_src" class="h-7 w-7"/>
           </div>
