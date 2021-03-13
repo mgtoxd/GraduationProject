@@ -33,16 +33,19 @@ export default {
     // this.$router.push('/index')
   },
   mounted() {
-    console.log()
-    if (this.$route.path === '/') {
-      this.$router.push('/index')
+    // console.log()
+    // if (this.$route.path === '/') {
+    //   // this.$router.push('/index')
+    // }
+  },
+  watch:{
+    $route:function (to,from){
+      console.log(to.path);
+      if (to.path==='/'){
+        this.$router.push('/index')
+      }
+
     }
   },
-  // watch:{
-  //   $route:function (to,from){
-  //     console.log(to.path);
-  //     // this.$router.push('/index')
-  //   }
-  // },
 }
 </script>

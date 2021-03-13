@@ -1,6 +1,6 @@
 #menu > .el-row > .el-col{
     height: 800px;
-    margin-top: 100px;
+    /* margin-top: ; */
 }
 #menu .hide{
     transform: translateY(-50px);
@@ -22,8 +22,8 @@
     border-bottom: 0px;
 }
 #menu .el-collapse-item__content{
-    color: white;
+    color: black;
 }
 #menu .el-collapse-item__header{
-    color: white;
+    color: black;
 }
