@@ -4,11 +4,17 @@ import index from '../views/index'
 import product from "@/views/product";
 import detail from "@/views/detail";
 import personInfo from "@/components/menu/personInfo";
+import costomized from "@/views/costomized";
 const routes = [
   {
     path: '/index',
     name: 'index',
     component: index
+  },
+  {
+    path: '/costomized',
+    name: 'costomized',
+    component: costomized
   },
   {
     path: '/detail',
