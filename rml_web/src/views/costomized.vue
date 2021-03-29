@@ -1,14 +1,20 @@
 <template>
-<el-row style="margin-top: 50px">
-  <el-col :span="24">
-    <div class="h-5 bg-red-600"></div>
-  </el-col>
-</el-row>
+  <el-row>
+    <el-col :span="24">
+      <iframe style="margin-top: 50px;width: 1000px;height: 800px" src="/static/costomized.html">
+
+      </iframe>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
+
+
 export default {
-name: "costomized",
+  created() {
+
+  },
 
 }
 </script>
