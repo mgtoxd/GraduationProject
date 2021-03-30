@@ -1,12 +1,13 @@
+<!-- 重点：clusterMarkerAdd clusterMarkerRemove -->
 <!doctype html>
 <html lang="zh-CN">
 
 <head>
-    <!-- 原始地址：//webapi.amap.com/ui/1.1/ui/geo/DistrictCluster/examples/index.html -->
+    <!-- 原始地址：//webapi.amap.com/ui/1.1/ui/geo/DistrictCluster/examples/food-tour.html -->
     <base href="//webapi.amap.com/ui/1.1/ui/geo/DistrictCluster/examples/" />
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-    <title>区划聚合</title>
+    <title>各地美食</title>
     <style>
         html,
         body,
@@ -26,6 +27,34 @@
             color: #fff;
             font-size: 14px;
         }
+
+        .poi-img {
+            width: 30px;
+            height: 30px;
+            background-position: 50% 50%;
+            position: absolute;
+            border: 1px solid #8e8e8e;
+            border-radius: 15px;
+        }
+
+        .poi-img:before,
+        .poi-img:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 0;
+            height: 0;
+            border: solid rgba(0, 0, 0, 0);
+            border-width: 6px 6px;
+            top: -12px;
+            left: 9px;
+            border-bottom-color: #505050;
+        }
+
+        .poi-img:before {
+            top: -13px;
+            border-bottom-color: #8e8e8e;
+        }
     </style>
 </head>
 
@@ -37,10 +66,11 @@
 <script type="text/javascript">
     //创建地图
     var map = new AMap.Map('container', {
-        zoom: 4
+        zoom: 4,
+        center: [108.928214, 34.539385]
     });
 
-    function initPage(DistrictCluster, $) {
+    function initPage(DistrictCluster, $, SimpleInfoWindow) {
 
         var distCluster = new DistrictCluster({
             map: map, //所属的地图实例
@@ -60,24 +90,146 @@
 
         window.distCluster = distCluster;
 
-        $('<div id="loadingTip">加载数据，请稍候...</div>').appendTo(document.body);
-        $.get('https://a.amap.com/amap-ui/static/data/10w.txt', function(csv) {
+        var renderEngine = distCluster.getRender();
+        var infoWindow = new SimpleInfoWindow({});
 
-            $('#loadingTip').remove();
+        distCluster.setData([]);
 
-            var data = csv.split('\n');
+        var placeSearch = new AMap.PlaceSearch({ //构造地点查询类
+            pageSize: 2,
+            pageIndex: 1,
+            extensions: 'all',
+            city: "010" //城市
+        });
 
-            distCluster.setData(data);
+        var resultsCache = {};
+
+        function listenMarkerClick(m) {
+
+            m.on('click', function(e) {
+
+                var data = m._data;
+
+                infoWindow.setInfoTitle(data.name);
+                infoWindow.setInfoBody(data.address);
+                infoWindow.open(map, data.location);
+            });
+        }
+
+        function search(adcode, callback) {
+            if (resultsCache[adcode]) {
+
+                setTimeout(function() {
+                    callback(null, resultsCache[adcode]);
+                }, 0);
+                return;
+            }
+
+            placeSearch.setCity(adcode);
+
+            placeSearch.search('景点', function(status, result) {
+                console.log(placeSearch)
+                console.log(result)
+                if (status !== 'complete') {
+                    callback(status);
+                    return;
+                }
+
+                var pois = result.poiList.pois,
+                    results = [];
+
+                for (var i = 0, len = pois.length; i < len; i++) {
+
+                    var data = pois[i];
+
+                    if (data.photos && data.photos[0]) {
+
+                        var node = document.createElement('div');
+
+                        node.className = 'poi-img';
+
+                        node.style.backgroundImage = 'url(' + data.photos[0].url + '?operate=merge&w=30&h=30)';
+
+                        node.title = data.name + '：' + data.address;
+
+                        container.append(node);
+
+                        var marker = new AMap.Marker({
+                            topWhenClick: true,
+                            offset: new AMap.Pixel(-15, 6),
+                            position: data.location,
+                            content: node,
+                            zIndex: 0
+                        });
+
+                        marker._data = data;
+
+                        listenMarkerClick(marker);
+
+                        results.push(marker);
+                    }
+                }
+
+                results._count = result.poiList.count;
+
+                resultsCache[adcode] = results;
+
+                callback(null, resultsCache[adcode]);
+            });
+        }
+
+        distCluster.on('clusterMarkerAdd', function(e, marker, record) {
+
+            $(marker.getContent()).find('.amap-ui-district-cluster-marker-body').html('...');
+
+            marker.__adcode = record.adcode;
+
+            search(record.adcode, function(err, foodMarkers) {
+
+                if (err || marker.__adcode !== record.adcode) {
+                    return;
+                }
+
+                record.foodMarkers = foodMarkers;
+
+                if (foodMarkers && foodMarkers.length) {
+
+                    for (var i = 0, len = foodMarkers.length; i < len; i++) {
+
+                        foodMarkers[i].setMap(map);
+                    }
+                }
+
+                $(marker.getContent()).find('.amap-ui-district-cluster-marker-body').html(foodMarkers._count || 0);
+
+            });
+        });
+
+        distCluster.on('clusterMarkerRemove', function(e, marker, record) {
+
+            if (record.foodMarkers) {
+
+                var markers = record.foodMarkers;
+
+                for (var i = 0, len = markers.length; i < len; i++) {
+                    markers[i].setMap(null);
+                }
+
+                record.foodMarkers = null;
+            }
+
         });
     }
 
     //加载相关组件
-    AMapUI.load(['ui/geo/DistrictCluster', 'lib/$'], function(DistrictCluster, $) {
+    AMapUI.load(['ui/geo/DistrictCluster', 'lib/$', 'ui/overlay/SimpleInfoWindow'], function(DistrictCluster, $, SimpleInfoWindow) {
 
-        window.DistrictCluster = DistrictCluster;
+        //加载搜索
+        AMap.plugin(["AMap.PlaceSearch"], function() {
 
-        //启动页面
-        initPage(DistrictCluster, $);
+            //启动页面
+            initPage(DistrictCluster, $, SimpleInfoWindow);
+        });
     });
 </script>
 </body>
