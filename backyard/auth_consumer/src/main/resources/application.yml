@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8845
+  application:
+    name: auth_consumer
+  main:
+    allow-bean-definition-overriding: true
+server:
+  port: 9801
