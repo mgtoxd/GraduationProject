@@ -41,7 +41,6 @@ public class ConsumerInfo implements Serializable {
     /**
      * 消费者生日
      */
-    @Mapping("birthday")
     private LocalDate conBirthday;
 
     /**

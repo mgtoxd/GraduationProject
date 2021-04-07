@@ -1,0 +1,57 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: rml-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          #开启以从nacos获取服务
+          enabled: true
+      routes:
+        - id: auth-consumer
+          uri: lb://auth-consumer
+          predicates:
+            - Path=/auth/**
+        - id: pay-consumer
+          uri: lb://pay-consumer
+          predicates:
+            - Path=/pay/**
+        - id: vip-consumer
+          uri: lb://vip-consumer
+          predicates:
+            - Path=/vip/**
+        - id: comment-consumer
+          uri: lb://comment-consumer
+          predicates:
+            - Path=/comment/**
+        - id: search-consumer
+          uri: lb://search-consumer
+          predicates:
+            - Path=/search/**
+        - id: seckill-consumer
+          uri: lb://seckill-consumer
+          predicates:
+            - Path=/seckill/**
+        - id: member-consumer
+          uri: lb://member-consumer
+          predicates:
+            - Path=/member/**
+        - id: product-consumer
+          uri: lb://product-consumer
+          predicates:
+            - Path=/product/**
+        - id: order-consumer
+          uri: lb://order-consumer
+          predicates:
+            - Path=/order/**
+        - id: add-consumer
+          uri: lb://add-consumer
+          predicates:
+            - Path=/add/**
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8845
+server:
+  port: 100

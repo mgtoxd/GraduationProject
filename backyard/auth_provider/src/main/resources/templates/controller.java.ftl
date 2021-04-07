@@ -59,7 +59,7 @@ public class ${table.controllerName} {
     public  Boolean addOrUpdateList(@RequestBody List<${entity}> param) {
         return ${table.serviceName?uncap_first}.saveOrUpdateBatch(param);
     }
-    @PostMapping(value = "/removeById")
+    @GetMapping(value = "/removeById")
     public  Boolean removeById(@RequestParam("id") String id) {
         return ${table.serviceName?uncap_first}.removeById(id);
     }

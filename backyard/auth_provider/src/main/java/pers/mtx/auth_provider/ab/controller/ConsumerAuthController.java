@@ -62,11 +62,6 @@ public class ConsumerAuthController {
         return iConsumerAuthService.listByIds(param);
     }
 
-    @GetMapping(value = "/getByEmail")
-    public  ConsumerAuth getByEmail(@RequestParam("email") String email) {
-        return iConsumerAuthService.getOne(new QueryWrapper<ConsumerAuth>().eq("con_email",email));
-    }
-
     @GetMapping(value = "/getByid")
     public  ConsumerAuth getByid(@RequestParam("id") String id) {
         return iConsumerAuthService.getById(id);

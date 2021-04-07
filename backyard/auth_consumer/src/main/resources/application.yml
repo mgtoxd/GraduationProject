@@ -4,7 +4,7 @@ spring:
       discovery:
         server-addr: 127.0.0.1:8845
   application:
-    name: auth_consumer
+    name: auth-consumer
   main:
     allow-bean-definition-overriding: true
 server:

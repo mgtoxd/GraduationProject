@@ -21,7 +21,7 @@ public interface ConsumerAuthFeign {
     public  Boolean addOrUpdate(@RequestBody ConsumerAuth param);
     @PostMapping(value = "/addOrUpdateList")
     public  Boolean addOrUpdateList(@RequestBody List<ConsumerAuth> param) ;
-    @PostMapping(value = "/removeById")
+    @GetMapping(value = "/removeById")
     public  Boolean removeById(@RequestParam("id") String id);
     @PostMapping(value = "/removeByIdList")
     public  Boolean removeByIdList(@RequestBody List<String> ids);
@@ -31,8 +31,6 @@ public interface ConsumerAuthFeign {
     public  Boolean updateBatchById(@RequestBody List<ConsumerAuth> param) ;
     @PostMapping(value = "/listByIdList")
     public  List<ConsumerAuth> listByIdList(@RequestBody List<String> param);
-    @GetMapping(value = "/getByEmail")
-    public  ConsumerAuth getByEmail(@RequestParam("email") String email);
     @GetMapping(value = "/getByid")
     public  ConsumerAuth getByid(@RequestParam("id") String id);
     @GetMapping(value = "/pageByModify")
