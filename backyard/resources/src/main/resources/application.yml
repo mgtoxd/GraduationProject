@@ -4,10 +4,10 @@ spring:
       discovery:
         server-addr: 127.0.0.1:8845
   application:
-    name: auth-consumer
+    name: static
   main:
     allow-bean-definition-overriding: true
 server:
-  port: 9801
+  port: 9701
   servlet:
-    context-path: /auth
+    context-path: /static

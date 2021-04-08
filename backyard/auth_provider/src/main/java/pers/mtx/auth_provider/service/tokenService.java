@@ -21,9 +21,12 @@ public class tokenService {
     * @Return boolean
     **/
     public boolean checkToken(String token){
-        System.out.println(token);
-        System.out.println(redisUtil.hasKey(token));
-        return redisUtil.hasKey(token);
+        if (redisUtil.hasKey(token)) {
+            redisUtil.expire(token,3600);
+            return true;
+        }
+
+        return false;
     }
 
 }

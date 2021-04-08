@@ -10,14 +10,16 @@ spring:
           #开启以从nacos获取服务
           enabled: true
       routes:
+        # 用户与验证
         - id: auth-consumer
           uri: lb://auth-consumer
           predicates:
             - Path=/auth/**
-        - id: pay-consumer
-          uri: lb://pay-consumer
+        # 静态资源服务
+        - id: static
+          uri: lb://static
           predicates:
-            - Path=/pay/**
+            - Path=/static/**
         - id: vip-consumer
           uri: lb://vip-consumer
           predicates:
