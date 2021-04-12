@@ -2,7 +2,8 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8845
+#        server-addr: 127.0.0.1:8845
+        server-addr: 192.168.3.230:8848
   application:
     name: static
   main:
