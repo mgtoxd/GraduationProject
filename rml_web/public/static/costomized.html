@@ -109,9 +109,15 @@
 				function listenMarkerClick(m) {
 
 					m.on('click', function(e) {
-
-						var data = m._data;
-						console.log(data.location)
+					    console.log("do")
+                        var data = m._data;
+                        window.parent.postMessage({
+                            data: {
+                                id:data.id,
+                                address:data.name,
+                                needMinutes:data.needMinutes
+                            }
+                        }, '*');
 						infoWindow.setInfoTitle(data.name);
 						infoWindow.setInfoBody(data.address);
 						infoWindow.open(map, data.location);
@@ -133,59 +139,30 @@
 					placeSearch.search('景点', function(status, result) {
 						// console.log('wdaadwaw')
 						// console.log(placeSearch)
-						console.log('aaaaa')
-						console.log(adcode)
-						console.log(result)
+						// console.log('aaaaa')
+						// console.log(adcode)
+						// console.log(result)
 						if (adcode === 150103) {
 							result.poiList.pois.push({
 								"id": "mtx1",
 								"name": "海亮广场大酒店",
-								"type": "酒店",
 								"location": [
 									111.669808,
 									40.815058
 								],
 								"address": "呼和浩特市回民区中山西路1号",
-								"tel": "",
-								"distance": null,
-								"shopinfo": "2",
-								"website": "",
-								"pcode": "150000",
-								"citycode": "0471",
-								"adcode": "150103",
-								"postcode": "",
-								"pname": "内蒙古自治区",
-								"cityname": "呼和浩特市",
-								"adname": "回民区",
-								"email": "",
 								"photos": [{
 										"title": "",
 										"url": "http://store.is.autonavi.com/showpic/967efa534663275d46d64ca427800258",
 										"provider": ""
 									},
-									{
-										"title": "",
-										"url": "http://store.is.autonavi.com/showpic/1ab1e8962258ab7eef6b6abdad8de1e6",
-										"provider": ""
-									},
-									{
-										"title": "",
-										"url": "http://store.is.autonavi.com/showpic/4beda32caada84836f0cdf9dbde81ce2",
-										"provider": ""
-									}
 								],
-								"entr_location": [
-									111.676329,
-									40.820038
-								],
-								"exit_location": null,
-								"groupbuy": false,
-								"discount": false,
-								"indoor_map": false,
-								"rating": "4.2",
-								"ticket_ordering": "0"
+                                "needMinutes":120
+
 							})
-						}
+						}else {
+						    status = 'no';
+                        }
 						if (status !== 'complete') {
 							callback(status);
 							return;
