@@ -37,31 +37,37 @@
 <script type="text/javascript">
     window. addEventListener ('message', function(event) {
         //event.data获取传过来的数据
-        console.log(event.data)
-    });
-    //基本地图加载
-    var map = new AMap.Map("container", {
-        resizeEnable: true,
-        center: [116.397428, 39.90923],//地图中心点
-        zoom: 13 //地图显示的缩放级别
-    });
-    //构造路线导航类
-    var driving = new AMap.Driving({
-        map: map,
-        panel: "panel",
-        autoFitView: true
-    });
-    // 根据起终点经纬度规划驾车导航路线
-    driving.search(new AMap.LngLat(116.379028, 39.865042), new AMap.LngLat(116.427281, 39.903719),{
-        waypoints:[new AMap.LngLat(116.379028, 39.885042)]
-    }, function(status, result) {
-        // result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
-        if (status === 'complete') {
-            log.success('绘制驾车路线完成')
-        } else {
-            log.error('获取驾车数据失败：' + result)
+        var locations = event.data.data.list
+        console.log(locations)
+        var ways = []
+        for (var i =1;i<locations.length-1;i++){
+            ways.push(new AMap.LngLat(locations[i].lng, locations[i].lat))
         }
+        //基本地图加载
+        var map = new AMap.Map("container", {
+            resizeEnable: true,
+            center: [locations[0].lng, locations[0].lat],//地图中心点
+            zoom: 13 //地图显示的缩放级别
+        });
+        //构造路线导航类
+        var driving = new AMap.Driving({
+            map: map,
+            panel: "panel",
+            autoFitView: true
+        });
+        // 根据起终点经纬度规划驾车导航路线
+        driving.search(new AMap.LngLat(locations[0].lng, locations[0].lat), new AMap.LngLat(locations[locations.length-1].lng, locations[locations.length-1].lat),{
+            waypoints:ways
+        }, function(status, result) {
+            // result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
+            if (status === 'complete') {
+                log.success('绘制驾车路线完成')
+            } else {
+                log.error('获取驾车数据失败：' + result)
+            }
+        });
     });
+
 </script>
 </body>
 </html>

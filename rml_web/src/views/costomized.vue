@@ -43,7 +43,18 @@ export default {
     changeMap(){
       if (this.showMap){
         this.BtnText='转到地图'
-        this.$refs.MapRoute.contentWindow. postMessage ("数据", '*');
+        var list = []
+        for (var i = 0;i<this.locationList.length;i++){
+          list.push({
+            lng:this.locationList[i].lng,
+            lat:this.locationList[i].lat,
+          })
+        }
+        this.$refs.MapRoute.contentWindow.postMessage({
+          data:{
+            list:list
+          }
+        }, '*');
       }else {
         this.BtnText='生成路线规划'
       }
@@ -51,9 +62,7 @@ export default {
     },
     add_step(event){
       var data = event.data.data;
-      // console.log(data.needMinutes);
-      // this.dateNow = this.dateNow.add(data.needMinutes,'m')
-      // console.log(this.dateNow.format())
+      console.log(data)
       var activity = {
         id:data.id,
         content: data.address,
@@ -61,6 +70,10 @@ export default {
         size: 'large',
       }
       this.activities.push(activity)
+      this.locationList.push({
+        lng:data.location[0],
+        lat:data.location[1]
+      })
     }
   },
   mounted() {
@@ -69,6 +82,7 @@ export default {
   },
   data(){
     return{
+      locationList:[],
       showMap: true,
       dateNow: this.$timeFormat('20210501T0801'),
       activities: [],

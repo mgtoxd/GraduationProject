@@ -115,7 +115,8 @@
                             data: {
                                 id:data.id,
                                 address:data.name,
-                                needMinutes:data.needMinutes
+                                needMinutes:data.needMinutes,
+                                location:data.location
                             }
                         }, '*');
 						infoWindow.setInfoTitle(data.name);
@@ -143,6 +144,7 @@
 						// console.log(adcode)
 						// console.log(result)
 						if (adcode === 150103) {
+                            result.poiList.pois.splice(0,result.poiList.pois.length);
 							result.poiList.pois.push({
 								"id": "mtx1",
 								"name": "海亮广场大酒店",
@@ -160,6 +162,38 @@
                                 "needMinutes":120
 
 							})
+                            result.poiList.pois.push({
+                                "id": "mtx2",
+                                "name": "内蒙古财经大学",
+                                "location": [
+                                    111.630303,40.856683
+                                ],
+                                "address": "呼和浩特市回民区中山西路1号",
+                                "photos": [{
+                                    "title": "",
+                                    "url": "http://store.is.autonavi.com/showpic/967efa534663275d46d64ca427800258",
+                                    "provider": ""
+                                },
+                                ],
+                                "needMinutes":120
+
+                            })
+                            result.poiList.pois.push({
+                                "id": "mtx3",
+                                "name": "南湖公园",
+                                "location": [
+                                    111.648214,40.746979
+                                ],
+                                "address": "呼和浩特市回民区中山西路1号",
+                                "photos": [{
+                                    "title": "",
+                                    "url": "http://store.is.autonavi.com/showpic/967efa534663275d46d64ca427800258",
+                                    "provider": ""
+                                },
+                                ],
+                                "needMinutes":120
+
+                            })
 						}else {
 						    status = 'no';
                         }
