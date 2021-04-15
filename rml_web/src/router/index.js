@@ -5,11 +5,29 @@ import product from "@/views/product";
 import detail from "@/views/detail";
 import personInfo from "@/components/menu/personInfo";
 import costomized from "@/views/costomized";
+import log from "@/views/login/log";
+import login from "@/views/login/login";
+import regester from "@/views/login/regester";
 const routes = [
   {
     path: '/index',
     name: 'index',
     component: index
+  },
+  {
+    path: '/log',
+    name: 'log',
+    component: log,
+    children:[
+      {
+        path:'login',
+        component: login,
+      },
+      {
+        path:'regester',
+        component: regester,
+      }
+    ]
   },
   {
     path: '/costomized',

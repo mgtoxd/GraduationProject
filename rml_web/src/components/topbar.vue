@@ -43,7 +43,7 @@
         <el-col :span="2"></el-col>
         <!--      图片-->
         <el-col :span="11">
-          <el-image @click="edit_if_menu_show" :src="menu.img_src"
+          <el-image @click="show_menu" :src="menu.img_src"
                     :fit="'contain'" style="float: left;cursor: pointer">
           </el-image>
         </el-col>
@@ -63,7 +63,7 @@ export default {
   name: "topbar",
   components: {Menu},
   computed: mapState([
-    "if_menu_show"
+    "if_menu_show","if_log"
   ]),
   data() {
     return {
@@ -82,6 +82,13 @@ export default {
   },
   methods: {
     ...mapMutations(['edit_if_menu_show']),
+    show_menu(){
+      if (this.if_log){
+        this.edit_if_menu_show()
+      }else {
+        this.$http.linkTo('/log')
+      }
+    }
   }
 }
 </script>

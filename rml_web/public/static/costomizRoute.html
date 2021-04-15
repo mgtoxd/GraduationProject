@@ -27,6 +27,7 @@
         }
     </style>
     <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
     <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=ca239aaba535516ef35f38cdca63250f&plugin=AMap.Driving"></script>
     <script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
@@ -66,10 +67,11 @@
                 log.error('获取驾车数据失败：' + result)
             }
         });
+        $(".amap-logo").empty();
+        $(".amap-copyright").empty();
+        $(".amap-call").empty();
     });
-    $(".amap-logo").empty();
-    $(".amap-copyright").empty();
-    $(".amap-call").empty();
+
 
 </script>
 </body>

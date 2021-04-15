@@ -6,14 +6,13 @@
         <el-row>
           <el-col :span="21" class="flex">
             <p class="self-center">个人中心</p>
-
           </el-col>
           <el-col :span="3">
             <el-image @click.native="edit_if_menu_show" :src="$http.getStatic('img/png/false.png')"
                       class="h-10 w-10 self-center cursor-pointer"/>
           </el-col>
         </el-row>
-        <el-row class="mt-5">
+        <el-row v-if="if_log" class="mt-5">
           <el-col :span="4" style="height: 900px" class="bg-white w-28">
             <el-row class="mt-14">
               <el-col class="mt-7" v-for="(item,index) in link_list" :span="24">
@@ -26,6 +25,9 @@
             <order-list v-if="which_menu_item_show === 2"></order-list>
             <change-pwd v-if="which_menu_item_show === 3"></change-pwd>
           </el-col>
+        </el-row>
+        <el-row v-if="!if_log">
+          请登录
         </el-row>
       </el-col>
       <el-col :span="4" class="h-1 "/>
@@ -44,6 +46,7 @@ import ChangePwd from "@/components/menu/changePwd";
 
 export default {
   created() {
+
   },
   components: {
     ChangePwd,
@@ -52,7 +55,7 @@ export default {
   },
   name: "Menu",
   computed: {
-    ...mapState(['if_menu_show','which_menu_item_show'])
+    ...mapState(['if_menu_show','which_menu_item_show','if_log'])
   },
   data() {
     return {
@@ -89,7 +92,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['edit_if_menu_show','edit_which_menu_item_show']),
+    ...mapMutations(['edit_if_menu_show','edit_which_menu_item_show','change_if_log']),
     hide_navi() {
       this.activeName = -1;
     },
