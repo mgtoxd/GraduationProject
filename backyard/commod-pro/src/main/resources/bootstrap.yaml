@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+      discovery:
+        server-addr: 127.0.0.1:8845
+      config:
+        server-addr: 127.0.0.1:8845
+        file-extension: yaml
+  application:
+    name: commod-provider
+server:
+  port: 9902
