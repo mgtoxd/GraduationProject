@@ -15,6 +15,9 @@
           <span style="word-wrap: normal">{{info.describe}}</span>
         </el-col>
       </el-row>
+      <el-row>
+
+      </el-row>
     </el-col>
     <el-col :span="4"/>
     <el-col :span="24">

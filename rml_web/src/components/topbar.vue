@@ -38,7 +38,7 @@
       <el-row>
         <!--      文字-->
         <el-col :span="11">
-          <p @click="edit_if_menu_show" style="float: right;cursor: pointer">{{ menu.title }}</p>
+          <p @click="show_menu" style="float: right;cursor: pointer">{{ menu.title }}</p>
         </el-col>
         <el-col :span="2"></el-col>
         <!--      图片-->

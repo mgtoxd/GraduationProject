@@ -30,7 +30,7 @@ public class ImgController {
     @SneakyThrows
     @RequestMapping(value = "/fileUpload")
     public String fileUpload(@RequestParam("file") MultipartFile file) {
-        if (file.isEmpty()) {
+        i f (file.isEmpty()) {
             System.out.println("文件为空空");
         }
         //获取文件的后缀名 .jpg
@@ -50,7 +50,7 @@ public class ImgController {
 //        GetContentType.getContentType();
         String fileName = UUID.randomUUID()+suffix;
         client.putObject(PutObjectArgs.builder().bucket(bucket).stream(go,go.available(),-1).object(fileName).contentType(file.getContentType()).build());
-        return fileName;
+        return bucket+"/"+fileName;
 
     }
 
