@@ -8,8 +8,16 @@ export default new Vuex.Store({
     menu_cover_link:'',
     token:'',
     if_log: false,
+    choose_day:'',
+    choose_month:''
   },
   mutations: {
+    edit_choose_day(state,day){
+      state.choose_day=day
+    },
+    edit_choose_month(state,month){
+      state.choose_month=month
+    },
     change_if_log(state){
       state.if_menu_show = !state.if_menu_show;
     },

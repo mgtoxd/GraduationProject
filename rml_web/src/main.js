@@ -7,6 +7,7 @@ import './assets/tailwind.css'
 import getStatic from './network/request/static/static'
 import moment from 'moment'
 
+
 const app = createApp(App)
 installElementPlus(app)
 moment.locale('zh-cn')

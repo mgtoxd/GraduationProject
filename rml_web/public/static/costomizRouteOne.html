@@ -36,9 +36,7 @@
 <div id="container"></div>
 <div id="panel"></div>
 <script type="text/javascript">
-    var hasRoute = false;
     window. addEventListener ('message', function(event) {
-
         //event.data获取传过来的数据
         var locations = event.data.data.list
         console.log(locations)
@@ -59,11 +57,7 @@
             autoFitView: true
         });
         // 根据起终点经纬度规划驾车导航路线
-        if (hasRoute){
-            driving.clear()
-        }
         driving.search(new AMap.LngLat(locations[0].lng, locations[0].lat), new AMap.LngLat(locations[locations.length-1].lng, locations[locations.length-1].lat),{
-            waypoints:ways
         }, function(status, result) {
             // result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
             if (status === 'complete') {
@@ -71,7 +65,6 @@
                 $(".amap-logo").empty();
                 $(".amap-copyright").empty();
                 $(".amap-call").empty();
-                hasRoute = true;
             } else {
                 log.error('获取驾车数据失败：' + result)
             }
