@@ -24,4 +24,10 @@ public class ConsumerController {
         List<ConsumerAuth> list = consumerAuthService.list(new QueryWrapper<ConsumerAuth>().eq("con_email", email).or().eq("con_phone_num", phone));
         return list.size()!=0;
     }
+
+    @PostMapping("/count")
+    public Integer count(){
+        return consumerAuthService.count();
+    }
+
 }

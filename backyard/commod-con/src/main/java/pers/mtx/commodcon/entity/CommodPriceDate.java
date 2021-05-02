@@ -1,6 +1,9 @@
 package pers.mtx.commodcon.entity;
 
 
+
+
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -10,11 +13,11 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- * 商品价格表
+ * 商品特殊日期价格表
  * </p>
  *
  * @author mataoxun
- * @since 2021-04-14
+ * @since 2021-04-28
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

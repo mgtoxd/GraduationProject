@@ -1,6 +1,6 @@
 package pers.mtx.auth_consumer.controller;
 
-import org.dozer.Mapper;
+import com.github.dozermapper.core.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

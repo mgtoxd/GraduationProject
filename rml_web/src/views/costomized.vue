@@ -5,9 +5,9 @@
       <iframe ref="MapRoute" v-show="!showMap" class="w-full" style="height: 900px" src="/static/costomizRoute.html"></iframe>
     </el-col>
     <el-col :span="1"/>
-    <el-col v-loading="activity_load" :span="5">
+    <el-col class="mt-24" v-loading="activity_load" :span="5">
       <el-row>
-        <el-col style="height: 800px" :span="24">
+        <el-col style="height: 770px" :span="24">
           <el-timeline>
             <el-timeline-item @click.native="toDetailRoute(index)"
                 v-for="(activity, index) in activities"
@@ -119,7 +119,7 @@ export default {
                 color: 'green',
                 size: 'large',
                 icon: 'el-icon-circle-check',
-                content: '预计行程时间' + res.data.route.paths[0].duration + '打车预计花费' + res.data.route.taxi_cost + '元',
+                content: '预计行程时间' + Math.ceil(res.data.route.paths[0].duration/60)+'分钟' + '打车预计花费' + res.data.route.taxi_cost + '元',
               })
               this.activity_load = false
             }

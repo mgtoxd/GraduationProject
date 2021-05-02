@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- * 商品价格表 服务实现类
+ * 商品特殊日期价格表 服务实现类
  * </p>
  *
  * @author mataoxun
- * @since 2021-04-14
+ * @since 2021-04-28
  */
 @Service
 public class CommodPriceDateServiceImpl extends ServiceImpl<CommodPriceDateMapper, CommodPriceDate> implements ICommodPriceDateService {

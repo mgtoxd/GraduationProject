@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
- * 商品价格表 前端控制器
+ * 商品特殊日期价格表 前端控制器
  * </p>
  *
  * @author mataoxun
- * @since 2021-04-14
+ * @since 2021-04-28
  */
 @RestController
 @RequestMapping("/commod-price-date")

@@ -2,8 +2,8 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8845
-#        server-addr: 192.168.3.230:8848
+#        server-addr: 127.0.0.1:8845
+        server-addr: 172.17.0.4:8848
   application:
     name: static
   main:
@@ -12,8 +12,6 @@ spring:
     multipart:
       max-file-size: 500MB
 server:
-  port: 9701
-  servlet:
-    context-path: /static
+  port: 9101
 
 

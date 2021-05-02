@@ -14,11 +14,12 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author mataoxun
- * @since 2021-04-05
+ * @since 2021-04-26
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
+
 public class BusinessmanAuth implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -68,6 +69,7 @@ public class BusinessmanAuth implements Serializable {
     /**
      * 逻辑删除
      */
+
 
     private Integer isDeleted;
 

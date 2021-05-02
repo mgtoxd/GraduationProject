@@ -8,12 +8,12 @@
       <el-row :gutter="30" style="margin-top: 50px">
         <el-col class="classfications" :span="4">
           <el-row>
-            <el-col class="cursor-pointer" @click.native="$http.linkTo(item.link,{'title':item.title})"
+            <el-col class="cursor-pointer"
                     @mouseenter.native="show_classfication_item(index)"
                     @mouseleave.native="hide_classfication_item(index)" v-for="(item,index) in classfications"
                     :key="index" :span="24">
-              <el-row class="text-center">
-                <el-col :span="12"><span>{{ item.title }}</span></el-col>
+              <el-row class="justify-items-center" @click.native="$http.linkTo('/classfication',{'title':item.title})">
+                <el-col :span="12"><span class="font-bold">{{ item.title }}</span></el-col>
                 <el-col :span="12">
                   <div class="mt-4">
                     <svg t="1613562809492" class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -29,7 +29,7 @@
 
               <div v-if="item.show" class="hover_class" style="">
                 <el-row>
-                  <el-col v-for="(item_product,index) in item.items" :key="index" :span="8">
+                  <el-col v-for="(item_product,index) in item.items" @click.native="$http.linkTo('/product',{'proId':item.title})" :key="index" :span="8">
                     <p>{{ item_product.title }}</p>
                   </el-col>
                 </el-row>
@@ -59,7 +59,6 @@
                     <el-col :span="6" style="height: 1px"></el-col>
                     <el-col :span="12">
                       <el-image
-
                           :src="item.img_src">
                       </el-image>
                     </el-col>
@@ -127,18 +126,21 @@
                       </el-row>
                     </el-col>
                     <!--                    秒杀商品-->
-                    <el-col class="bg-indexPro transform " :span="4"
+                    <el-col class="bg-indexPro transform " style="background-color:#f1f1f1" :span="4"
                             v-for="(item,index) in seckill.item" :key="index">
                       <el-row class="sec_product hover:scale-105 hover:shadow">
                         <el-col :span="24" style="height: 30px"/>
-                        <el-col :span="24" class="flex justify-center">
-                          <el-image :src="item.img_src" :fit="'contain'"/>
+                        <el-col :span="3" style="height: 1px"/>
+                        <el-col :span="18" class="flex justify-center">
+                          <el-image :src="item.img_src" :fit="'cover'"/>
                         </el-col>
+                        <el-col :span="3" style="height: 1px"/>
                         <el-col :span="24" style="height: 25px"/>
-                        <el-col :span="24" class="sec_title"><p v-text="item.title"></p></el-col>
+                        <el-col :span="24" class="sec_title font-bold"><p v-text="item.title"></p></el-col>
                         <el-col :span="24" class="sec_describe"><p v-text="item.describe"></p></el-col>
-                        <el-col :span="12" class="sec_price"><p v-text="item.price"></p></el-col>
-                        <el-col :span="12" class="sec_oldprice"><p v-text="item.old_price"></p></el-col>
+                        <el-col :span="12" class="sec_price text-red-600 text-xl"><p v-text="item.price"></p></el-col>
+                        <el-col :span="1" style="height: 1px"/>
+                        <el-col :span="11" class="sec_oldprice "><p v-text="item.old_price"></p></el-col>
                         <el-col :span="24" style="height: 60px"/>
                       </el-row>
                     </el-col>
@@ -161,12 +163,12 @@
             <el-row :gutter="20">
               <!--              封皮-->
               <el-col :span="5" style="height: 620px">
-                <el-image :src="item.cover.img_src" class="h-full w-full pb-1.5 pt-1.5"/>
+                <el-image :src="item.cover.img_src" :fit="'cover'" class="h-full w-full pb-1.5 pt-1.5"/>
               </el-col>
               <el-col :span="19" style="height: 620px">
                 <el-row :gutter="40">
                   <el-col :key="index" v-for="(item_pro,index) in item.items" :span="6">
-                    <el-image :src="item_pro.src" style="height: 300px"
+                    <el-image :src="item_pro.src" style="height: 300px" :fit="'cover'"
                               class="w-full pb-1.5 pt-1.5 hover:scale-105 hover:shadow"></el-image>
                   </el-col>
                   <el-col :span="6">
@@ -194,23 +196,34 @@
 
 <script>
 export default {
+  created() {
+    this.$http.get("/api/market/index/getIndexList",{}).then(res=>{
+      var data = res.data
+      if (data.code===200){
+
+      }
+    })
+  },
   name: "index",
   data() {
     return {
       carouselmap: [
         {
-          img_src: this.$http.getStatic('img/png/1.png'),
+          img_src: this.$http.getStatic('img/test/lb1.jpg'),
           link: ''
         },
         {
-          img_src: this.$http.getStatic('img/png/2.png'),
+          img_src: this.$http.getStatic('img/test/lb2.jpg'),
+          link: ''
+        },
+        {
+          img_src: this.$http.getStatic('img/test/lb3.jpg'),
           link: ''
         },
       ],
       classfications: [
         {
-          title: 'gogo',
-          link: '/classfication',
+          title: '周末游',
           show: false,
           items: [
             {
@@ -226,8 +239,7 @@ export default {
           ]
         },
         {
-          title: 'gogo',
-          link: '',
+          title: '跟团游',
           show: false,
           items: [
             {
@@ -254,8 +266,7 @@ export default {
           ]
         },
         {
-          title: 'gogo',
-          link: '',
+          title: '自由行',
           show: false,
           items: [
             {
@@ -271,8 +282,7 @@ export default {
           ]
         },
         {
-          title: 'gogo',
-          link: '',
+          title: '私家团',
           show: false,
           items: [
             {
@@ -288,8 +298,7 @@ export default {
           ]
         },
         {
-          title: 'gogo',
-          link: '',
+          title: '主题游',
           show: false,
           items: [
             {
@@ -305,8 +314,7 @@ export default {
           ]
         },
         {
-          title: 'gogo',
-          link: '',
+          title: '情侣游',
           show: false,
           items: [
             {
@@ -321,8 +329,7 @@ export default {
             },
           ]
         }, {
-          title: 'gogo',
-          link: '',
+          title: '高端游',
           show: false,
           items: [
             {
@@ -338,8 +345,7 @@ export default {
           ]
         },
         {
-          title: 'gogo',
-          link: '',
+          title: '户外游',
           show: false,
           items: [
             {
@@ -355,8 +361,7 @@ export default {
           ]
         },
         {
-          title: 'gogo',
-          link: '',
+          title: '出境游',
           show: false,
           items: [
             {
@@ -372,8 +377,7 @@ export default {
           ]
         },
         {
-          title: 'gogo',
-          link: '',
+          title: '长线游',
           show: false,
           items: [
             {
@@ -394,7 +398,7 @@ export default {
       add_under_carousel_table: [
         {
           title: '限时秒杀',
-          img_src: this.$http.getStatic('img/png/seckill.png'),
+          img_src: this.$http.getStatic('img/seckill.png'),
         },
         {
           title: '1',
@@ -419,32 +423,53 @@ export default {
       ],
       add_under_carousel_add: [
         {
-          img_src: 'http://localhost:81/img/jpg/william-christen-hB_nkwIw5f4-unsplash.jpg',
+          img_src: 'http://localhost:81/img/test/zl1.jpg',
           link: 'demoCos'
         },
         {
-          img_src: 'http://localhost:81/img/jpg/william-christen-hB_nkwIw5f4-unsplash.jpg',
+          img_src: 'http://localhost:81/img/test/zl2.jpg',
           link: ''
         },
         {
-          img_src: 'http://localhost:81/img/jpg/william-christen-hB_nkwIw5f4-unsplash.jpg',
+          img_src: 'http://localhost:81/img/test/zl3.jpg',
           link: ''
         },
       ],
       seckill: {
         title: '限时秒杀',
         time: '10:00',
-        img_src: this.$http.getStatic('img/png/seckill.png'),
+        img_src: this.$http.getStatic('img/seckill.png'),
         item: [
           {
-            img_src: ' http://localhost:81/img/png/seckill.png',
+            img_src: ' http://localhost:81/img/test/sk1.jpg',
             title: 'title',
             describe: '描述',
             price: '156',
             old_price: '158'
           },
           {
-            img_src: ' http://localhost:81/img/png/seckill.png',
+            img_src: ' http://localhost:81/img/test/sk2.jpg',
+            title: 'title',
+            describe: '描述',
+            price: '156',
+            old_price: '158'
+          },
+          {
+            img_src: '  http://localhost:81/img/test/sk3.jpg',
+            title: 'title',
+            describe: '描述',
+            price: '156',
+            old_price: '158'
+          },
+          {
+            img_src: '  http://localhost:81/img/test/sk4.jpg',
+            title: '昆明五天三夜',
+            describe: '描述',
+            price: '156',
+            old_price: '158'
+          },
+          {
+            img_src: ' http://localhost:81/img/test/sk5.jpg',
             title: 'title',
             describe: '描述',
             price: '156',
@@ -457,13 +482,13 @@ export default {
         link: ""
       },
       channel: {
-        more_img: this.$http.getStatic('img/png/more.png'),
+        more_img: this.$http.getStatic('img/more.png'),
         items: [
           {
             title: '跟团游',
             link: '',
             cover: {
-              img_src: '',
+              img_src: this.$http.getStatic('img/test/channel/1.jpg'),
               link: ''
             },
             items: [
@@ -472,49 +497,49 @@ export default {
                 describe: '',
                 price: '',
                 link: '',
-                src: ''
+                src: this.$http.getStatic('img/test/channel/2.jpg')
               },
               {
                 title: '',
                 describe: '',
                 price: '',
                 link: '',
-                src: ''
+                src: this.$http.getStatic('img/test/channel/3.jpg')
               },
               {
                 title: '',
                 describe: '',
                 price: '',
                 link: '',
-                src: ''
+                src: this.$http.getStatic('img/test/channel/4.jpg')
               },
               {
                 title: '',
                 describe: '',
                 price: '',
                 link: '',
-                src: ''
+                src: this.$http.getStatic('img/test/channel/6.jpg')
               },
               {
                 title: '',
                 describe: '',
                 price: '',
                 link: '',
-                src: ''
+                src: this.$http.getStatic('img/test/channel/7.jpg')
               },
               {
                 title: '',
                 describe: '',
                 price: '',
                 link: '',
-                src: ''
+                src: this.$http.getStatic('img/test/channel/9.jpg')
               },
               {
                 title: '',
                 describe: '',
                 price: '',
                 link: '',
-                src: ''
+                src: this.$http.getStatic('img/test/channel/8.jpg')
               },
             ]
           },
@@ -522,7 +547,7 @@ export default {
             title: '情侣游',
             link: '',
             cover: {
-              img_src: '',
+              img_src: this.$http.getStatic('img/test/channel/8.jpg'),
               link: ''
             },
             items: [
@@ -531,49 +556,49 @@ export default {
                 describe: '',
                 price: '',
                 link: '',
-                src: ''
+                src: this.$http.getStatic('img/test/channel/12.jpg')
               },
               {
                 title: '',
                 describe: '',
                 price: '',
                 link: '',
-                src: ''
+                src: this.$http.getStatic('img/test/channel/2.jpg')
               },
               {
                 title: '',
                 describe: '',
                 price: '',
                 link: '',
-                src: ''
+                src: this.$http.getStatic('img/test/channel/10.jpg')
               },
               {
                 title: '',
                 describe: '',
                 price: '',
                 link: '',
-                src: ''
+                src: this.$http.getStatic('img/test/channel/3.jpg')
               },
               {
                 title: '',
                 describe: '',
                 price: '',
                 link: '',
-                src: ''
+                src: this.$http.getStatic('img/test/channel/4.jpg')
               },
               {
                 title: '',
                 describe: '',
                 price: '',
                 link: '',
-                src: ''
+                src: this.$http.getStatic('img/test/channel/6.jpg')
               },
               {
                 title: '',
                 describe: '',
                 price: '',
                 link: '',
-                src: ''
+                src: this.$http.getStatic('img/test/channel/11.jpg')
               },
             ]
           },
@@ -581,7 +606,7 @@ export default {
             title: '出国游',
             link: '',
             cover: {
-              img_src: '',
+              img_src: this.$http.getStatic('img/test/channel/10.jpg'),
               link: ''
             },
             items: [
@@ -590,49 +615,49 @@ export default {
                 describe: '',
                 price: '',
                 link: '',
-                src: ''
+                src: this.$http.getStatic('img/test/channel/5.jpg')
               },
               {
                 title: '',
                 describe: '',
                 price: '',
                 link: '',
-                src: ''
+                src: this.$http.getStatic('img/test/channel/7.jpg')
               },
               {
                 title: '',
                 describe: '',
                 price: '',
                 link: '',
-                src: ''
+                src: this.$http.getStatic('img/test/channel/9.jpg')
               },
               {
                 title: '',
                 describe: '',
                 price: '',
                 link: '',
-                src: ''
+                src: this.$http.getStatic('img/test/channel/12.jpg')
               },
               {
                 title: '',
                 describe: '',
                 price: '',
                 link: '',
-                src: ''
+                src: this.$http.getStatic('img/test/channel/3.jpg')
               },
               {
                 title: '',
                 describe: '',
                 price: '',
                 link: '',
-                src: ''
+                src: this.$http.getStatic('img/test/channel/1.jpg')
               },
               {
                 title: '',
                 describe: '',
                 price: '',
                 link: '',
-                src: ''
+                src: this.$http.getStatic('img/test/channel/4.jpg')
               },
             ]
           }

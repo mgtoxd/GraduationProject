@@ -10,11 +10,11 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- * 商品详细信息
+ * 商品与店铺信息
  * </p>
  *
  * @author mataoxun
- * @since 2021-04-14
+ * @since 2021-04-28
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

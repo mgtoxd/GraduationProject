@@ -2,7 +2,7 @@ package pers.mtx.auth_consumer.vo;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
-import org.dozer.Mapping;
+import com.github.dozermapper.core.Mapping;
 
 /**
  * @Author: 马韬循

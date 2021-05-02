@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author mataoxun
- * @since 2021-04-14
+ * @since 2021-04-28
  */
 public interface ICommodBasedinfoService extends IService<CommodBasedinfo> {
 

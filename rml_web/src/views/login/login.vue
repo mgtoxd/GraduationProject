@@ -16,7 +16,7 @@
 <el-row class="mt-9">
   <el-col :span="2"/>
   <el-col :span="9">
-    <el-image class="h-80" :src="$http.getStatic('/img/png/1.png')" :fit="'cover'"></el-image>
+    <el-image class="h-80" :src="$http.getStatic('/img/png/test/channel/10.jpg')" :fit="'cover'"></el-image>
   </el-col>
   <el-col :span="1"/>
   <el-col :span="9">

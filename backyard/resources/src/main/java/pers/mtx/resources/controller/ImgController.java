@@ -1,7 +1,6 @@
 package pers.mtx.resources.controller;
 
 import io.minio.*;
-import jdk.internal.util.xml.impl.Input;
 import lombok.SneakyThrows;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,7 @@ public class ImgController {
     @SneakyThrows
     @RequestMapping(value = "/fileUpload")
     public String fileUpload(@RequestParam("file") MultipartFile file) {
-        i f (file.isEmpty()) {
+        if (file.isEmpty()) {
             System.out.println("文件为空空");
         }
         //获取文件的后缀名 .jpg

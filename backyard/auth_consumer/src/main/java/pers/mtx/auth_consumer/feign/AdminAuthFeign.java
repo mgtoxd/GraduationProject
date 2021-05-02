@@ -12,7 +12,7 @@ import java.util.List;
  * @DateTime: 2021/4/5 22:41
  **/
 @FeignClient("auth-provider")
-@RequestMapping("")
+@RequestMapping("admin-auth")
 public interface AdminAuthFeign {
     @PostMapping(value = "/add")
     Boolean add(@RequestBody AdminAuth param);

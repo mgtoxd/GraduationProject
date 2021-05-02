@@ -4,7 +4,6 @@ package pers.mtx.auth_consumer.entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import org.dozer.Mapping;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -15,7 +14,7 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author mataoxun
- * @since 2021-04-05
+ * @since 2021-04-26
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -34,19 +33,19 @@ public class ConsumerAuth implements Serializable {
     /**
      * 消费者邮箱
      */
-    @Mapping("email")
+
     private String conEmail;
 
     /**
      * 消费者密码md5
      */
-    @Mapping("password")
+
     private String conPassword;
 
     /**
      * 消费者手机号
      */
-    @Mapping("phoneNum")
+
     private String conPhoneNum;
 
     /**

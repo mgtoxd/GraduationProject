@@ -2,7 +2,7 @@ package pers.mtx.auth_consumer.vo;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
-import org.dozer.Mapping;
+import com.github.dozermapper.core.Mapping;
 
 import java.time.LocalDate;
 
@@ -15,19 +15,29 @@ import java.time.LocalDate;
 @Accessors(chain = true)
 public class ConsumerRegisterVo {
 
-    private String email;
+    /**
+     * 消费者头像
 
-    private String password;
+     */
+    private String conAva;
+    /**
+     * 消费者昵称
+     */
+    private String conName;
 
-    private String phoneNum;
+    private String conEmail;
 
-    private LocalDate birthday;
+    private String conPassword;
 
-    private String sex;
+    private String conPhoneNum;
 
-    private String nation;
+    private LocalDate conBirthday;
 
-    private String nationality;
+    private String conSex;
 
-    private String cardId;
+    private String conNation;
+
+    private String conNationality;
+
+    private String conCardId;
 }

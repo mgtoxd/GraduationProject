@@ -1,12 +1,11 @@
 package pers.mtx.commodcon.config;
- import org.dozer.DozerBeanMapper;
+ import com.github.dozermapper.core.DozerBeanMapperBuilder;
+ import com.github.dozermapper.core.Mapper;
+  import com.github.dozermapper.core.DozerBeanMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
  @Configuration
     public class DozerBeanMapperConfigure {
         @Bean
-        public DozerBeanMapper mapper() {
-            DozerBeanMapper mapper = new DozerBeanMapper();
-            return mapper;
-        }
+        public Mapper mapper() {             return  DozerBeanMapperBuilder.buildDefault();         }
     }

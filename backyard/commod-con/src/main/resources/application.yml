@@ -2,12 +2,13 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8845
+        server-addr: 172.17.0.4:8848
+#        server-addr: 127.0.0.1:8845
   application:
     name: commod-consumer
   main:
     allow-bean-definition-overriding: true
 server:
-  port: 9802
+  port: 9140
   servlet:
     context-path: /commod

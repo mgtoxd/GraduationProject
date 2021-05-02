@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author mataoxun
- * @since 2021-04-05
+ * @since 2021-04-26
  */
 public interface IConsumerBankCardService extends IService<ConsumerBankCard> {
 

@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author mataoxun
- * @since 2021-04-05
+ * @since 2021-04-26
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -57,6 +57,7 @@ public class ConsumerBankCard implements Serializable {
     /**
      * 逻辑删除
      */
+
 
     private Integer isDeleted;
 

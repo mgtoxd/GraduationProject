@@ -32,7 +32,7 @@
             <el-col :span="18">
               <el-input
                   placeholder="请填写昵称"
-                  v-model="regester.name">
+                  v-model="resData.conName">
               </el-input>
             </el-col>
 
@@ -40,12 +40,11 @@
             <el-col :span="18">
               <el-upload
                   class="avatar-uploader"
-                  action="/resource/static/fileUpload"
+                  action="/api/static/fileUpload"
                   :show-file-list="false"
                   :on-success="handleAvatarSuccess"
-                  :before-upload="beforeAvatarUpload"
               >
-                <img v-if="getAva" :src="getAva" class="avatar">
+                <img v-if="resData.conAva" :src="resData.conAva" class="avatar">
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
               </el-upload>
             </el-col>
@@ -54,7 +53,7 @@
             <el-col :span="18">
               <el-input
                   placeholder="请填写邮箱"
-                  v-model="regester.name">
+                  v-model="resData.conEmail">
               </el-input>
             </el-col>
 
@@ -62,20 +61,37 @@
             <el-col :span="18">
               <el-input
                   placeholder="请填写手机号"
-                  v-model="regester.name">
+                  v-model="resData.conPhoneNum">
+              </el-input>
+            </el-col>
+            <el-col :span="6" class="grid"><span class="place-self-center">密码：</span></el-col>
+            <el-col :span="18">
+              <el-input
+                  show-password
+                  placeholder="请填写密码"
+                  v-model="resData.conPassword">
               </el-input>
             </el-col>
 
 
             <el-col :span="6" class="grid"><span class="place-self-center">性别：</span></el-col>
             <el-col :span="18">
-              <el-radio v-model="regester.sex" label="M">男</el-radio>
-              <el-radio v-model="regester.sex" label="W">女</el-radio>
+              <el-radio v-model="resData.conSex" label="男">男</el-radio>
+              <el-radio v-model="resData.conSex" label="女">女</el-radio>
+            </el-col>
+            <el-col :span="6" class="grid"><span class="place-self-center">生日：</span></el-col>
+            <el-col :span="18">
+            <el-date-picker
+                v-model="resData.conBirthday"
+                type="date"
+                format="YYYY-MM-DD"
+                placeholder="选择日期">
+            </el-date-picker>
             </el-col>
 
             <el-col :span="6" class="grid"><span class="place-self-center">国籍：</span></el-col>
             <el-col :span="18">
-              <el-select v-model="regester.nation" placeholder="请选择国籍">
+              <el-select v-model="resData.conNation" placeholder="请选择国籍">
                 <el-option
                     :label="'中国'"
                     :value="'中国'">
@@ -83,25 +99,26 @@
               </el-select>
             </el-col>
 
-            <el-col v-if="regester.nation==='中国'" :span="6" class="grid"><span class="place-self-center">身份证号：</span>
+            <el-col v-if="resData.conNation==='中国'" :span="6" class="grid"><span class="place-self-center">身份证号：</span>
             </el-col>
-            <el-col v-if="regester.nation==='中国'" :span="18">
+            <el-col v-if="resData.conNation==='中国'" :span="18">
               <el-input
                   placeholder="请填写身份证号"
-                  v-model="regester.name">
+                  v-model="resData.conCardId">
               </el-input>
             </el-col>
 
-            <el-col v-if="regester.nation==='中国'" :span="6" class="grid"><span class="place-self-center">民族：</span>
+            <el-col v-if="resData.conNation==='中国'" :span="6" class="grid"><span class="place-self-center">民族：</span>
             </el-col>
-            <el-col v-if="regester.nation==='中国'" :span="18">
+            <el-col v-if="resData.conNation==='中国'" :span="18">
               <el-input
                   placeholder="请填写民族"
-                  v-model="regester.name">
+                  v-model="resData.conNationality">
               </el-input>
             </el-col>
-
-
+            <el-col class="grid" :span="24">
+              <el-button @click="addCon" class="justify-self-center">注册</el-button>
+            </el-col>
           </el-row>
         </el-col>
         <el-col :span="4"/>
@@ -113,16 +130,35 @@
 </template>
 
 <script>
+import {ElMessage} from "element-plus";
+
 export default {
   name: "regester",
   methods: {
+    addCon(){
+      this.resData.conBirthday.setHours(this.resData.conBirthday.getHours()+8)
+      this.$http.post("/api/auth/register/consumer",this.resData)
+      .then(res=>{
+        console.log(res)
+        if (res.data.code === 200){
+          ElMessage.success({
+            message: '注册成功',
+            type: 'success'
+          });
+        }else if (res.data.code === 250) {
+          ElMessage.error({
+            message: '该邮箱和手机号已经注册',
+          });
+        }
+      })
+    },
     jumpToIndex() {
       this.$http.linkTo("/")
     },
     handleAvatarSuccess(res, file) {
       //获取返回的路径
       console.log(res)
-      this.getAva = "http://localhost:9701/static/img/" + res;
+      this.resData.conAva = "/api/static/img/" + res;
     },
     jumpToLog() {
       this.$http.linkTo("/log/login")
@@ -130,12 +166,7 @@ export default {
   },
   data() {
     return {
-      regester: {
-        name: '',
-        nation: '',
-        sex: 'W'
-      },
-      getAva: ''
+      resData:{},
     }
   }
 }

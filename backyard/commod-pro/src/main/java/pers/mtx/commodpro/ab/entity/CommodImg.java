@@ -1,8 +1,6 @@
 package pers.mtx.commodpro.ab.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableLogic;
@@ -18,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author mataoxun
- * @since 2021-04-14
+ * @since 2021-04-28
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -31,7 +29,7 @@ public class CommodImg implements Serializable {
     /**
      * 商品id
      */
-    @TableId(value = "commod_id", type = IdType.ASSIGN_UUID)
+    @TableField("commod_id")
     private String commodId;
 
     /**
