@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author mataoxun
- * @since 2021-05-02
+ * @since 2021-05-03
  */
 public interface SecKillMapper extends BaseMapper<SecKill> {
 

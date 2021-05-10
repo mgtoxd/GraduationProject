@@ -1,0 +1,12 @@
+server:
+  port: 9905
+  servlet:
+    context-path: /pay
+spring:
+  cloud:
+    nacos:
+      discovery:
+        #        server-addr: 172.17.0.4:8848
+        server-addr: nacos1:8848
+  application:
+    name: pay

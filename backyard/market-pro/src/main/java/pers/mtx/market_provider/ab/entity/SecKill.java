@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author mataoxun
- * @since 2021-05-02
+ * @since 2021-05-03
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -27,12 +27,6 @@ import lombok.experimental.Accessors;
 public class SecKill implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 秒杀活动id
-     */
-    @TableField("sec_id")
-    private String secId;
 
     /**
      * 秒杀活动时间
@@ -67,6 +61,12 @@ public class SecKill implements Serializable {
 
     @TableId(value = "sec_kill_id", type = IdType.ASSIGN_UUID)
     private String secKillId;
+
+    /**
+     * 秒杀活动名称
+     */
+    @TableField("sec_name")
+    private String secName;
 
 
 }

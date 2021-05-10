@@ -40,5 +40,10 @@ public interface CommodFeign {
     @GetMapping("/count/CommodBasedinfo")
     public Integer CountCommodBasedinfo();
 
+    @GetMapping(value = "/commod-basedinfo/removeById")
+    public  Boolean removeCommodBaseinfoById(@RequestParam("id") String id);
 
+
+    @GetMapping("/img/getContentImgByCommodId")
+    public List<CommodImg> getContentImgByCommodId(@RequestParam("commodId") String id);
 }

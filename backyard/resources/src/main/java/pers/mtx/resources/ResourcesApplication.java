@@ -14,8 +14,7 @@ public class ResourcesApplication {
     @Bean
     public MinioClient minio() {
         return MinioClient.builder()
-                .endpoint("http://172.17.0.5:9000/")
-//                .endpoint("http://localhost:9000/")
+                .endpoint("http://minio:9000/")
                 .credentials("mataoxun", "mtx990812")
                 .build();
     }

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  *
  * @author mataoxun
- * @since 2021-05-02
+ * @since 2021-05-03
  */
 @RestController
 @RequestMapping("/sec-kill")

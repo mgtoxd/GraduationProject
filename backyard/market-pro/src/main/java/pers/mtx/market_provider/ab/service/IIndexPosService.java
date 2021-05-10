@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author mataoxun
- * @since 2021-05-02
+ * @since 2021-05-03
  */
 public interface IIndexPosService extends IService<IndexPos> {
 

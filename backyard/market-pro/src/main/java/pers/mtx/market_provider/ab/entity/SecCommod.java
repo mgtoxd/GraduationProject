@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author mataoxun
- * @since 2021-05-02
+ * @since 2021-05-03
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -61,6 +61,12 @@ public class SecCommod implements Serializable {
 
     @TableId(value = "sec_commod_id", type = IdType.ASSIGN_UUID)
     private String secCommodId;
+
+    /**
+     * 秒杀价格
+     */
+    @TableField("sec_price")
+    private Integer secPrice;
 
 
 }

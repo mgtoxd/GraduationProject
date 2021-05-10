@@ -26,8 +26,8 @@ public class PriceController {
     * @Author: 马韬循
     * @Description: 根据商品id获取特殊日期价格
     * @DateTime: 8:56 2021/4/30
-    * @Params: 
-    * @Return 
+    * @Params:
+    * @Return
     **/
     @GetMapping("/listDatePriceByCommodId")
     public List<CommodPriceDate> listDatePriceByCommodId(@RequestParam("id") String id){
@@ -38,8 +38,8 @@ public class PriceController {
     * @Author: 马韬循
     * @Description: 根据商品id删除特殊日期价格
     * @DateTime: 9:11 2021/4/30
-    * @Params: 
-    * @Return 
+    * @Params:
+    * @Return
     **/
     @GetMapping("/removeDatePriceByCommodId")
     public Boolean removeDatePriceByCommodId(@RequestParam("id") String id){

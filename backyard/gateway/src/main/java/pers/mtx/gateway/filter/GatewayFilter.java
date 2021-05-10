@@ -30,24 +30,21 @@ public class GatewayFilter implements GlobalFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 //        System.out.println(exchange.getRequest().getURI().getRawPath());
-//        String[] PassArray={".*/auth/.*"};
+//        String[] PassArray={".*/order/.*"};
 //        for (String item :
 //                PassArray) {
 //            System.out.println(exchange.getRequest().getURI().toString());
 //            if (Pattern.matches(item,exchange.getRequest().getURI().toString())){
-//                return chain.filter(exchange);
+//                //获取request
+//                String token = exchange.getRequest().getHeaders().getFirst("token");
+//                if (StringUtils.isEmpty(token)||!checkToken(token)){
+//                    ServerHttpResponse response = exchange.getResponse();
+//                    response.setStatusCode(HttpStatus.METHOD_FAILURE);
+//                    String msg = "token is null or wrong";
+//                    DataBuffer buffer = response.bufferFactory().wrap(msg.getBytes());
+//                    return response.writeWith(Mono.just(buffer));
+//                }
 //            }
-//        }
-//
-//
-//        //获取request
-//        String token = exchange.getRequest().getHeaders().getFirst("token");
-//        if (StringUtils.isEmpty(token)||!checkToken(token)){
-//            ServerHttpResponse response = exchange.getResponse();
-//            response.setStatusCode(HttpStatus.BAD_GATEWAY);
-//            String msg = "token is null or wrong";
-//            DataBuffer buffer = response.bufferFactory().wrap(msg.getBytes());
-//            return response.writeWith(Mono.just(buffer));
 //        }
         return chain.filter(exchange);
     }
@@ -62,6 +59,8 @@ public class GatewayFilter implements GlobalFilter {
     public boolean checkToken( String token){
         switch (token.toCharArray()[token.length()]){
             case 'c':
+                if (feign.whetherConsumer(token)) return true;
+            case 'a':
                 if (feign.whetherConsumer(token)) return true;
         }
         return false;

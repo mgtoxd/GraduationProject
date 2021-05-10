@@ -5,7 +5,9 @@ import com.github.dozermapper.core.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pers.mtx.commodcon.entity.*;
+import pers.mtx.commodcon.feign.CommodClassifyControllerFeign;
 import pers.mtx.commodcon.feign.CommodFeign;
+import pers.mtx.commodcon.feign.MarketCFeign;
 import pers.mtx.commodcon.result.RestResponse;
 import pers.mtx.commodcon.vo.SetCommod;
 
@@ -25,6 +27,10 @@ public class CommodController {
     Mapper dozerMapper;
     @Autowired
     CommodFeign commodFeign;
+    @Autowired
+    MarketCFeign marketCFeign;
+    @Autowired
+    CommodClassifyControllerFeign commodClassifyControllerFeign;
 
     /**
      * @Author: 马韬循
@@ -82,5 +88,9 @@ public class CommodController {
         return RestResponse.success(result);
     }
 
-
+    @GetMapping("/removeCommodByCommodId")
+    public RestResponse removeCommod(@RequestParam("id") String id){
+        marketCFeign.removeIndexInfoByCommodId(id);
+        return commodFeign.removeCommodBaseinfoById(id)?RestResponse.success():RestResponse.error();
+    }
 }

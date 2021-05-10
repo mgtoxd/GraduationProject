@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+      discovery:
+        server-addr: nacos1:8848
+      config:
+        server-addr: nacos1:8848
+        file-extension: yaml
+  application:
+    name: order-provider
+server:
+  port: 9131

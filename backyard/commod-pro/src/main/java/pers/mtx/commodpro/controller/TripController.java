@@ -27,6 +27,6 @@ public class TripController {
 
     @PostMapping(value = "/listByCommodId")
     public List<CommodTripInfo> listCommodTripInfoByCommodId(@RequestBody String id) {
-        return commodTripInfoService.list(new QueryWrapper<CommodTripInfo>().eq("commod_id",id));
+        return commodTripInfoService.list(new QueryWrapper<CommodTripInfo>().eq("commod_id",id).orderByAsc("commod_trip_sort"));
     }
 }

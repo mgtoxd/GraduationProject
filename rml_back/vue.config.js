@@ -1,4 +1,6 @@
 module.exports = {
+    publicPath:'/',
+
     devServer: {
         disableHostCheck: true,
         proxy: {
@@ -13,4 +15,11 @@ module.exports = {
         }
     },
 
+    pluginOptions: {
+      moment: {
+        locales: [
+          'zh-cn'
+        ]
+      }
+    }
 }

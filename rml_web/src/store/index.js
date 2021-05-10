@@ -8,10 +8,13 @@ export default new Vuex.Store({
     menu_cover_link:'',
     token:'',
     if_log: false,
-    choose_day:'',
+    choose_day:{},
     choose_month:''
   },
   mutations: {
+    edit_if_log(state,params){
+      state.if_log=params
+    },
     edit_choose_day(state,day){
       state.choose_day=day
     },
@@ -28,6 +31,7 @@ export default new Vuex.Store({
       state.menu_cover_link = link;
     },
     edit_which_menu_item_show(state,id){
+
       state.which_menu_item_show = id
     }
   },

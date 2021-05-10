@@ -1,13 +1,15 @@
 package pers.mtx.commodcon.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import pers.mtx.commodcon.feign.ClassifyFeign;
+import org.springframework.web.bind.annotation.*;
+import pers.mtx.commodcon.entity.CommodBasedinfo;
+import pers.mtx.commodcon.entity.CommodImg;
+import pers.mtx.commodcon.entity.CommodTripInfo;
+import pers.mtx.commodcon.entity.CommodTxt;
+import pers.mtx.commodcon.feign.*;
 import pers.mtx.commodcon.result.RestResponse;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -16,11 +18,35 @@ import java.util.List;
  * @DateTime: 2021/4/14 19:55
  **/
 @RestController
+@RequestMapping("/IndexCommod")
 public class IndexCommodController {
     @Autowired
     ClassifyFeign classifyFeign;
-//    @GetMapping("/getCommodsByClassify")
-//    public RestResponse getCommodsByClassify(@RequestParam("id") String classifyId){
-//
-//    }
+
+    @Autowired
+    CommodBasedinfoControllerFeign basedinfoControllerFeign;
+    @Autowired
+    CommodFeign commodFeign;
+    @Autowired
+    TripFeign tripFeign;
+    @Autowired
+    CommodTxtControllerFeign commodTxtControllerFeign;
+
+
+    @GetMapping("/GetCommodDetailById")
+    public RestResponse GetCommodDetailById(@RequestParam("commodId") String commodId){
+        CommodBasedinfo basedinfo = basedinfoControllerFeign.getByid(commodId);
+        List<CommodImg> contentImgs = commodFeign.getContentImgByCommodId(commodId);
+        List<CommodTripInfo> commodTripInfos = tripFeign.listCommodTripInfoByCommodId(commodId);
+        CommodTxt txt = commodTxtControllerFeign.getByid(commodId);
+        HashMap<String, Object> map = new HashMap<>();
+
+        map.put("baseInfo",basedinfo);
+        map.put("contentImgs",contentImgs);
+        map.put("commodTripInfos",commodTripInfos);
+        map.put("txt",txt);
+        return RestResponse.success(map);
+    }
+
+
 }

@@ -79,7 +79,7 @@
           </el-tabs>
           <el-row class="mt-10">
             <el-col :span="24">
-              <el-button class="w-full">登录</el-button>
+              <el-button @click="login" class="w-full">登录</el-button>
             </el-col>
           </el-row>
         </el-col>
@@ -95,9 +95,47 @@
 </template>
 
 <script>
+import {ElMessage} from "element-plus";
+import {mapMutations} from "vuex";
+
 export default {
   name: "login",
   methods: {
+    ...mapMutations(['edit_if_log']),
+    getToken(){
+      return localStorage.getItem('token')
+    },
+    login(){
+      this.$http.post("/api/auth/ConsumerLogin",{
+        type:this.LogType,
+        user:this.loginInfo.username,
+        password:this.loginInfo.password
+      }).then(res=>{
+        var data = res.data
+        if (data.code===200){
+          if (data.data.indexOf('用户')!==-1){
+            ElMessage.error({
+              message:data.data,
+            })
+          }else {
+            this.edit_if_log(true)
+            localStorage.setItem('token',data.data)
+            ElMessage.success({
+              message:'登陆成功',
+              type:'success'
+            })
+            this.$http.get("/api/auth/consumer/getConsumerInfoByToken",{params:{token:this.getToken()}}).then(res=>{
+              var data = res.data
+              if (data.code===200){
+                localStorage.setItem('consumerInfo',JSON.stringify(data.data))
+              }
+            })
+            this.$http.linkTo("/")
+
+          }
+        }
+      })
+    },
     jumpToIndex() {
       this.$http.linkTo("/")
     },

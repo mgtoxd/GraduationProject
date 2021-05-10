@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author mataoxun
- * @since 2021-05-02
+ * @since 2021-05-03
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -23,12 +23,6 @@ import java.time.LocalDateTime;
 public class SecKill implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 秒杀活动id
-     */
-
-    private String secId;
 
     /**
      * 秒杀活动时间
@@ -63,6 +57,12 @@ public class SecKill implements Serializable {
 
 
     private String secKillId;
+
+    /**
+     * 秒杀活动名称
+     */
+
+    private String secName;
 
 
 }

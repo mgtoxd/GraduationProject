@@ -95,7 +95,7 @@
             </el-col>
           </el-row>
         </el-form-item>
-        <el-button type="primary" @click="addSpeSku">添加特殊价格日期</el-button>
+        <el-button type="primary" @click="addSpeSku">添加特殊库存日期</el-button>
       </el-form>
       <template #footer>
         <span class="dialog-footer">
@@ -131,7 +131,12 @@
         <el-tab-pane label="首页图片" name="IndexImg">
           <IndexImgAdd ref="marketIndexImg" class="w-full h-full"/>
         </el-tab-pane>
-        <el-tab-pane label="秒杀活动" name="secKill">秒杀活动</el-tab-pane>
+        <el-tab-pane label="秒杀活动" name="secKill">
+          <SecKillAdd ref="marketSecKill" class="w-full h-full"/>
+        </el-tab-pane>
+        <el-tab-pane label="专栏" name="SpecialColumn">
+          <SpecialColumnAdd ref="marketSpecialColumn" class="w-full h-full"/>
+        </el-tab-pane>
       </el-tabs>
     </el-dialog>
 <!--弹窗结束-->
@@ -152,7 +157,7 @@
             width="180"
             label="商品图标">
           <template #default="scope">
-            <el-image class="w-12 h-12" :src="getImg(scope.row.commodIndexImg)"></el-image>
+            <el-image class="w-12 h-12" :src="'/api/static/img/'+scope.row.commodIndexImg"></el-image>
           </template>
         </el-table-column>
         <el-table-column
@@ -214,12 +219,15 @@
 <script>
 import {ElMessage} from "element-plus";
 import IndexImgAdd from "@/components/IndexImgAdd";
+import SecKillAdd from "@/components/SecCommodAdd";
+import SpecialColumnAdd from "@/components/SpecialColumnCommodAdd";
 
 export default {
   name: "commodList",
-  components: {IndexImgAdd},
+  components: {SpecialColumnAdd, SecKillAdd, IndexImgAdd},
   data() {
     return {
+      nowPage:1,
       market:{
         activeMarket:"IndexImg",
         MarketDialogVisible:false,
@@ -252,6 +260,22 @@ export default {
     }
   },
   methods: {
+    del(val){
+      this.$axios.get("/api/commod/Commod/removeCommodByCommodId",{params:{id:val.commodId}}).then(res=>{
+        var data = res.data
+        if (data.code === 200) {
+          ElMessage.success({
+            message: '删除成功',
+            type: 'success'
+          });
+        } else {
+          ElMessage.error({
+            message: '删除失败，请联系管理员',
+          });
+        }
+        this.getCommodBaseData(this.nowPage)
+      })
+    },
     getImg(path) {
       return '/api/static/img/' + path.toString()
     },
@@ -259,6 +283,8 @@ export default {
       this.market.MarketDialogVisible = true
       setTimeout(()=>{
         this.$refs.marketIndexImg.getData(val.commodId)
+        this.$refs.marketSecKill.getData(val.commodId)
+        this.$refs.marketSpecialColumn.getData(val.commodId)
       },100)
 
     },
@@ -315,6 +341,7 @@ export default {
         this.tableData = data.data.list
         this.total = data.data.pageNum * 10 + 10
       })
+      this.nowPage = val
     },
     addSpecialDataPrice(){
       this.price.speDataPrice.push({
@@ -339,6 +366,9 @@ export default {
       })
     },
     updatePrice(){
+      this.price.speDataPrice.forEach((item,index)=>{
+        item.commodDateSpecial = this.$moment(item.commodDateSpecial).add(8,'h').toISOString()
+      })
       this.$axios.post("/api/commod/price/setCommodPriceDate",{
         commodId:this.price.commodId,
         commodPrice:this.price.form.commodPrice,
@@ -379,6 +409,9 @@ export default {
       })
     },
     updateSku(){
+      this.sku.skuList.forEach((item,index)=>{
+        item.date= this.$moment(item.date).add(8,'h').toISOString()
+      })
       this.$axios.post("/api/commod/sku/setSkuInfo",{
         id:this.sku.id,
         skuList:this.sku.skuList

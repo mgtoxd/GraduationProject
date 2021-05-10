@@ -1,11 +1,9 @@
 package pers.mtx.auth_provider.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pers.mtx.auth_provider.service.tokenService;
+import pers.mtx.auth_provider.util.RedisUtil;
 
 /**
  * @Author: 马韬循
@@ -18,6 +16,8 @@ public class TokenController {
 
     @Autowired
     tokenService service;
+    @Autowired
+    RedisUtil redisUtil;
     /**
     * @Author: 马韬循
     * @Description: 验证token
@@ -28,5 +28,14 @@ public class TokenController {
     @PostMapping("/checkToken")
     public boolean whetherConsumer(@RequestBody String token){
         return service.checkToken(token);
+    }
+    @PostMapping("/checkAdminToken")
+    public boolean whetherAdmin(@RequestBody String token){
+        return service.checkAdminToken(token);
+    }
+
+    @GetMapping("/getConsumerBytoken")
+    public String  getConsumerBytoken(@RequestParam("token") String token){
+        return (String) redisUtil.get(token);
     }
 }

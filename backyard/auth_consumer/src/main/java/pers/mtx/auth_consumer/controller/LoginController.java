@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import pers.mtx.auth_consumer.entity.AdminAuth;
 import pers.mtx.auth_consumer.entity.ConsumerAuth;
 import pers.mtx.auth_consumer.feign.ConsumerAuthFeign;
 import pers.mtx.auth_consumer.feign.LoginFeign;
@@ -46,7 +47,20 @@ public class LoginController {
             return RestResponse.success(loginFeign.LoginByEmail(consumerAuth));
         }else {
             consumerAuth.setConPhoneNum(loginVo.getUser()).setConPassword(loginVo.getPassword());
-            return RestResponse.success(loginFeign.LoginByEmail(consumerAuth));
+            return RestResponse.success(loginFeign.LoginByPhoneNum(consumerAuth));
         }
+    }
+
+    /**
+     * @Author: 马韬循
+     * @Description: 管理员登录
+     * @DateTime: 21:40 2021/4/7
+     * @Params:
+     * @Return
+     **/
+    @PostMapping("/AdminLogin")
+    public RestResponse AdminLogin(@RequestBody AdminAuth adminAuth){
+        String s = loginFeign.LoginAdmin(adminAuth);
+        return RestResponse.success(s);
     }
 }

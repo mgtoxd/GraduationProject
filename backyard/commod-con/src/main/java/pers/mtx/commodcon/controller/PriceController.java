@@ -14,6 +14,10 @@ import pers.mtx.commodcon.result.RestResponse;
 import pers.mtx.commodcon.vo.setClassifyVo;
 import pers.mtx.commodcon.vo.setPriceVo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -56,7 +60,17 @@ public class PriceController {
     * @Return 
     **/
     @PostMapping("/setCommodPriceDate")
-    public RestResponse setCommodPriceDate(@RequestBody setPriceVo priceVo){
+    public RestResponse setCommodPriceDate(@RequestBody setPriceVo priceVo) throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        for (CommodPriceDate item:
+             priceVo.getCommodPriceDateList()) {
+            Date date1 = simpleDateFormat.parse(item.getCommodDateSpecial().split("T")[0]);
+            Calendar rightNow = Calendar.getInstance();
+            rightNow.setTime(date1);
+            rightNow.add(Calendar.DAY_OF_YEAR,1);
+            String date = simpleDateFormat.format(rightNow.getTime());
+            item.setCommodDateSpecial(date);
+        }
         CommodPrice commodPrice = dozerMapper.map(priceVo, CommodPrice.class);
         priceFeign.removeDatePriceByCommodId(priceVo.getCommodId());
         if (priceFeign.updateCommodPriceById(commodPrice)&&  priceFeign.addCommodPriceDateList(priceVo.getCommodPriceDateList())){

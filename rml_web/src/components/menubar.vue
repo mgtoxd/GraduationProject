@@ -12,21 +12,23 @@
                       class="h-10 w-10 self-center cursor-pointer"/>
           </el-col>
         </el-row>
-        <el-row v-if="if_log" class="mt-5">
+        <el-row v-if="getToken" class="mt-5">
           <el-col :span="4" style="height: 900px" class="bg-white w-28">
             <el-row class="mt-14">
               <el-col class="mt-7" v-for="(item,index) in link_list" :span="24">
                 <p class="ml-4 text-lg " @click="edit_which_menu_item_show(item.id)" :class="[{'text-yellow-600':(index===which_menu_item_show-1)}]" >{{ item.title }}</p>
+              </el-col>
+              <el-col class="mt-7"  :span="24">
+                <p class="ml-4 cursor-pointer text-lg " @click="delToken()"  >注销</p>
               </el-col>
             </el-row>
           </el-col>
           <el-col :span="18" style="height: 900px" class="bg-white ml-5">
             <person-info v-if="which_menu_item_show === 1"></person-info>
             <order-list v-if="which_menu_item_show === 2"></order-list>
-            <change-pwd v-if="which_menu_item_show === 3"></change-pwd>
           </el-col>
         </el-row>
-        <el-row v-if="!if_log">
+        <el-row v-if="!getToken">
           请登录
         </el-row>
       </el-col>
@@ -68,10 +70,6 @@ export default {
           title: '我的订单',
           id:2,
         },
-        {
-          title: '修改密码',
-          id:3,
-        },
 
       ],
       userInfo: {
@@ -92,7 +90,16 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['edit_if_menu_show','edit_which_menu_item_show','change_if_log']),
+    ...mapMutations(['edit_if_menu_show','edit_if_log','edit_which_menu_item_show','change_if_log']),
+    delToken(){
+      localStorage.removeItem('token')
+      localStorage.removeItem('consumerInfo')
+      this.edit_if_menu_show()
+      this.$http.linkTo("/log")
+    },
+    getToken(){
+      return localStorage.getItem('token')
+    },
     hide_navi() {
       this.activeName = -1;
     },

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import pers.mtx.market_con.entity.IndexPos;
 import pers.mtx.market_con.entity.IndexShowCommod;
+import pers.mtx.market_con.entity.SecCommod;
+import pers.mtx.market_con.entity.SecKill;
 
 import java.util.List;
 
@@ -36,4 +38,36 @@ public interface MarketFeign {
 
     @PostMapping(value = "/index-show-commod/addOrUpdateList")
     public  Boolean addOrUpdateIndexShowCommodList(@RequestBody List<IndexShowCommod> param);
+    @GetMapping(value = "/index-show-commod/removeById")
+    public  Boolean removeIndexShowCommodById(@RequestParam("id") String id);
+
+    @GetMapping(value = "/index-pos/getByid")
+    public  IndexPos getIndexPosByid(@RequestParam("id") String id);
+
+    @PostMapping(value = "/index-show-commod/updateById")
+    public  Boolean updateIndexShowCommodById(@RequestBody IndexShowCommod param);
+
+
+
+    @PostMapping(value = "/sec-commod/addOrUpdate")
+    public  Boolean addOrUpdateSecKillCommod(@RequestBody SecCommod param);
+
+    @GetMapping("/Sec/getSecKByCommodId")
+    public SecCommod getSecKByCommodId(@RequestParam("id") String id);
+
+    @GetMapping(value = "/sec-kill/pageByModify")
+    public List<SecKill> pageSecKill(@RequestParam("count") Integer count,@RequestParam("size") Integer size);
+
+
+    @PostMapping(value = "/sec-kill/add")
+    public  Boolean addSecKill(@RequestBody SecKill param);
+
+    @GetMapping(value = "/sec-kill/removeById")
+    public  Boolean removeSecKillById(@RequestParam("id") String id);
+
+    @GetMapping(value = "/sec-kill/getByid")
+    public  SecKill getSecKillByid(@RequestParam("id") String id);
+    @GetMapping("/Sec/listSecCommodBySecId")
+    public List<SecCommod> listSecCommodBySecId(@RequestParam("id") String id);
+
 }

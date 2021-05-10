@@ -21,6 +21,10 @@ public class CheckController {
     TokenFeign tokenFeign;
     @PostMapping("/checkToken")
     public boolean whetherConsumer(@RequestBody String token){
-        return tokenFeign.whetherConsumer(token);
+        return true;
+    }
+    @PostMapping("/checkAdminToken")
+    public boolean whetherAdmin(@RequestBody String token){
+        return true;
     }
 }

@@ -18,4 +18,7 @@ public interface CheckFeign {
 
     @PostMapping("/checkToken")
     public boolean whetherConsumer(@RequestBody String token);
+
+    @PostMapping("/checkAdminToken")
+    public boolean whetherAdmin(@RequestBody String token);
 }

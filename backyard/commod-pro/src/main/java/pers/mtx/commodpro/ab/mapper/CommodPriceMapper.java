@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author mataoxun
- * @since 2021-04-28
+ * @since 2021-05-04
  */
 public interface CommodPriceMapper extends BaseMapper<CommodPrice> {
 

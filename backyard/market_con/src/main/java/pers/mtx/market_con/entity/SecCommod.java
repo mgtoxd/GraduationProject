@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author mataoxun
- * @since 2021-05-02
+ * @since 2021-05-03
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -57,6 +57,12 @@ public class SecCommod implements Serializable {
 
 
     private String secCommodId;
+
+    /**
+     * 秒杀价格
+     */
+
+    private Integer secPrice;
 
 
 }

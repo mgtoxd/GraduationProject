@@ -25,8 +25,16 @@ public class tokenService {
             redisUtil.expire(token,3600);
             return true;
         }
-
         return false;
     }
+
+    public boolean checkAdminToken(String token){
+        if (redisUtil.hasKey(token)) {
+            redisUtil.expire(token,7200);
+            return true;
+        }
+        return false;
+    }
+
 
 }

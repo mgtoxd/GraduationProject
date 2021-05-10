@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author mataoxun
- * @since 2021-04-28
+ * @since 2021-05-04
  */
 @Service
 public class CommodBasedinfoServiceImpl extends ServiceImpl<CommodBasedinfoMapper, CommodBasedinfo> implements ICommodBasedinfoService {

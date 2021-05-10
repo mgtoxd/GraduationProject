@@ -7,6 +7,10 @@ import consumer from "@/views/member/consumer";
 import commodAdd from "@/views/commod/commodAdd";
 import commodList from "@/views/commod/commodList";
 import indexImg from "@/views/market/indexImg";
+import SecKill from "@/views/market/SecKill";
+import addSecKill from "@/views/market/addSecKill";
+import specialColumn from "@/views/market/specialColumn";
+import orderList from "@/views/order/orderList";
 
 const routes = [
   {
@@ -36,9 +40,10 @@ const routes = [
     component: twice,
     children:[
       {
-        path: '/com',
-        name: 'com',
-        component: commod
+        path: 'orderList',
+        name: 'orderList',
+        title: '订单列表',
+        component: orderList
       }
     ]
   },
@@ -78,6 +83,24 @@ const routes = [
         name: 'indexImg',
         title: '首页图片管理',
         component: indexImg
+      },
+      {
+        path: 'SecKill',
+        name: 'SecKill',
+        title: '秒杀活动管理',
+        component: SecKill
+      },
+      {
+        path: 'addSecKill',
+        name: 'addSecKill',
+        title: '秒杀活动添加',
+        component: addSecKill
+      },
+      {
+        path: 'specialColumn',
+        name: 'specialColumn',
+        title: '专栏管理',
+        component: specialColumn
       }
     ]
   },

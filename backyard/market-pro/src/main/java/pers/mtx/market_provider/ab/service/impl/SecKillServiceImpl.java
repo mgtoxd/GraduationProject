@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author mataoxun
- * @since 2021-05-02
+ * @since 2021-05-03
  */
 @Service
 public class SecKillServiceImpl extends ServiceImpl<SecKillMapper, SecKill> implements ISecKillService {

@@ -25,6 +25,7 @@
       <el-row>
         <el-col :span="24">
           <el-button type="primary" @click="changeMap">{{ BtnText }}</el-button>
+          <el-button type="primary" @click="Book" v-show="Canbook">订购</el-button>
         </el-col>
       </el-row>
     </el-col>
@@ -35,13 +36,31 @@
 <script>
 
 
+import {ElMessage} from "element-plus";
+
 export default {
   created() {
 
   },
   methods:{
+    Book(){
+      this.$http.post("/api/order/order/Book",this.activities).then(res=>{
+        var data = res.data
+        if (data.code===200){
+          ElMessage.success({
+            message:'预订成功',
+            type:'success'
+          })
+        }else {
+          ElMessage.error({
+            message:'预定失败'
+          })
+        }
+      })
+    },
     changeMap(){
       if (this.showMap){
+        this.Canbook = true
         this.BtnText='转到地图'
         var list = []
         for (var i = 0;i<this.locationList.length;i++){
@@ -57,6 +76,7 @@ export default {
         }, '*');
       }else {
         this.BtnText='生成路线规划'
+        this.Canbook = false
       }
       this.showMap = !this.showMap
     },
@@ -156,6 +176,7 @@ export default {
   },
   data(){
     return{
+      Canbook:false,
       activity_load:false,
       locationList:[],
       showMap: true,

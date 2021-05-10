@@ -2,10 +2,7 @@ package pers.mtx.auth_consumer.feign;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author: 马韬循
@@ -26,4 +23,9 @@ public interface TokenFeign {
     **/
     @PostMapping("/checkToken")
     public boolean whetherConsumer(@RequestBody String token);
+    @PostMapping("/checkAdminToken")
+    public boolean whetherAdmin(@RequestBody String token);
+
+    @GetMapping("/getConsumerBytoken")
+    public String  getConsumerBytoken(@RequestParam("token") String token);
 }

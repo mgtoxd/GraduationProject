@@ -1,9 +1,7 @@
 package pers.mtx.commodpro.ab.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
 import java.time.LocalDate;
-import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableLogic;
@@ -19,7 +17,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author mataoxun
- * @since 2021-04-28
+ * @since 2021-05-04
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -32,7 +30,7 @@ public class CommodSku implements Serializable {
     /**
      * 商品id
      */
-    @TableId(value = "commod_id", type = IdType.ASSIGN_UUID)
+    @TableField("commod_id")
     private String commodId;
 
     /**

@@ -1,0 +1,16 @@
+pers\mtx\comments_con\vo\addCommentVo.class
+pers\mtx\comments_con\commentsConApplication.class
+pers\mtx\comments_con\entity\CommentTxt.class
+pers\mtx\comments_con\config\FeignConfig.class
+pers\mtx\comments_con\entity\CommentAttr.class
+pers\mtx\comments_con\feign\CommentInfoControllerFeign.class
+pers\mtx\comments_con\controller\CommentController.class
+pers\mtx\comments_con\feign\CommentAttrControllerFeign.class
+pers\mtx\comments_con\entity\CommentInfo.class
+pers\mtx\comments_con\config\DozerBeanMapperConfigure.class
+pers\mtx\comments_con\entity\ConsumerBaseInfo.class
+pers\mtx\comments_con\feign\AuthProFeign.class
+pers\mtx\comments_con\result\RestResponse.class
+pers\mtx\comments_con\feign\CommentTxtControllerFeign.class
+pers\mtx\comments_con\result\RestResponse$RestResponseBuilder.class
+pers\mtx\comments_con\feign\CommentControllerFeign.class

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import pers.mtx.commodcon.entity.ClassifyInfo;
+import pers.mtx.commodcon.entity.CommodBasedinfo;
 import pers.mtx.commodcon.entity.CommodClassify;
 
 import java.util.List;
@@ -25,5 +26,11 @@ public interface ClassifyFeign {
     public Boolean removeByCommodId(@RequestParam("id") String id);
     @PostMapping(value = "/commod-classify/add")
     public  Boolean addCommodClassify(@RequestBody CommodClassify param);
+
+    @GetMapping("/classify/listCommodIdByClassifyId")
+    public List<CommodClassify> listCommodIdByClassifyId(@RequestParam("id") String id);
+
+    @GetMapping("/classify/listCommodIdByNameLike")
+    public List<CommodBasedinfo> listCommodIdByNameLike(@RequestParam("name") String name);
 
 }
